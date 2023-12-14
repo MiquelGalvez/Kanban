@@ -23,7 +23,7 @@ namespace ProjectoDragDrop
     public partial class MainWindow : Window
     {
         // Variable per fer el ID unic de la tasca
-        private int counterID = 0;
+        private int counterID = 1;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace ProjectoDragDrop
             if (creartasca.DialogResult == true)
             {
                 Tasca novaTasca = creartasca.CreatedTask;
-                novaTasca.ID = counterID.ToString();
+                novaTasca.ID = "ID: " + counterID.ToString();
                 // Afegeix la tasca al listbox anomenat llistattodo
                 Llistattodo.Items.Add(novaTasca);
                 counterID++;

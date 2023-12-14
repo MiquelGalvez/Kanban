@@ -40,6 +40,7 @@
                                         <Button Content="E" BorderBrush="Transparent" Foreground="White" Background="Transparent" Margin="-1,-1,-1,-1" Click="EditarTasca_Click"/>
                                     </Border>
                                     <TextBlock Text="{Binding ID}" FontWeight="Bold"/>
+                                    <Separator Height="5px"></Separator>
                                     <TextBlock Text="{Binding Titol}" FontWeight="Bold"/>
                                     <TextBlock Text="{Binding Descripcio}" Margin="0,0,0,10"/>
                                     <TextBlock Text="Data Creació" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="93"/>
@@ -85,7 +86,7 @@
             <!-- Contenido -->
             <StackPanel>
                 <TextBlock Text="DOING" TextAlignment="Center" FontWeight="Bold"  Foreground="White" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#114358"/>
-                <ListBox Name="llistatdoing" Margin="0,0,0,0" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
+                <ListBox Name="llistatdoing" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
             </StackPanel>
 
         </Border>
@@ -98,7 +99,7 @@
             <!--Contenido-->
             <StackPanel>
                 <TextBlock Text="IN REVIEW" TextAlignment="Center" FontWeight="Bold"  Foreground="Black" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#f2aa1f"/>
-                <ListBox Name="llistatinreview" Margin="0,0,0,0" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
+                <ListBox Name="llistatinreview" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
             </StackPanel>
         </Border>
 
@@ -109,7 +110,7 @@
             <!--Contenido-->
             <StackPanel>
                 <TextBlock Text="COMPLETED" TextAlignment="Center" FontWeight="Bold"  Foreground="White" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#090909"/>
-                <ListBox Name="llistatcompleted" Margin="0,0,0,0" Background="Transparent" BorderBrush="DarkGray" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
+                <ListBox Name="llistatcompleted" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
             </StackPanel>
         </Border>
 
