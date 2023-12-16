@@ -46,7 +46,6 @@ namespace ProjectoDragDrop.FormulariCrearTasca
                     // Creació d'una nova Tasca amb les dades proporcionades
                     Tasca newTask = new Tasca
                     {
-                       
                         Titol = Titol.Text,
                         Descripcio = DescripcioTasca.Text,
                         // Format de la data de creació en el foramt desitjat
@@ -55,7 +54,11 @@ namespace ProjectoDragDrop.FormulariCrearTasca
                         // Obtenir el responsable seleccionat o posar "Sense Assignar" per defecte
                         Responsable = (responsables.SelectedItem as Tasca)?.Responsable ?? "Sense Asignar",
                         // Obtenir la prioritat seleccionada o posar "Baixa" per defecte
-                        Prioritat = (prioritats.SelectedItem as Tasca)?.Prioritat ?? "Baixa"
+                        Prioritat = (prioritats.SelectedItem as Tasca)?.Prioritat ?? "Baixa",
+                        // Obtenir el responsable seleccionat o posar "Sense Assignar" per defecte
+                        Estat = (estats.SelectedItem as Tasca)?.Estat ?? "TO DO",
+
+
                     };
                     
 
@@ -97,7 +100,7 @@ namespace ProjectoDragDrop.FormulariCrearTasca
             llistatprioritats.Add(new Tasca { Prioritat = "Mitja" });
             llistatprioritats.Add(new Tasca { Prioritat = "Baixa" });
 
-            // Assignació de la llista com a origen de dades per a l'element estats
+            // Assignació de la llista com a origen de dades per a l'element prioritats
             prioritats.ItemsSource = llistatprioritats;
 
             // Inicialització d'una llista de responsables per posar al combobox de responsables del formulari
@@ -108,6 +111,16 @@ namespace ProjectoDragDrop.FormulariCrearTasca
 
             // Assignació de la llista com a origen de dades per a l'element responsables
             responsables.ItemsSource = llistatreponsables;
+
+            List<Tasca> llistatsestats = new List<Tasca>();
+            llistatsestats.Add(new Tasca { Estat = "TO DO" });
+            llistatsestats.Add(new Tasca { Estat = "DOING" });
+            llistatsestats.Add(new Tasca { Estat = "IN REVIEW" });
+            llistatsestats.Add(new Tasca { Estat = "COMPLETED" });
+
+            // Assignació de la llista com a origen de dades per a l'element estats
+            estats.ItemsSource = llistatsestats;
+
         }
 
     }

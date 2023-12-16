@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjectoDragDrop"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
-        Title="KANBAN" Height="700" Width="1160" Background="White" MinWidth="1080" MinHeight="700" >
+        Title="KANBAN" Height="700" Width="1160" VerticalContentAlignment="Stretch" Background="White" MinWidth="1080" MinHeight="700">
     <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -25,32 +25,24 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="51.04"></RowDefinition>
         </Grid.RowDefinitions>
-
         <!-- Primera columna -->
-        <Border Grid.Column="0" Grid.Row="0" BorderBrush="#f1ece7" BorderThickness="1" Margin="30,30,0,30">
+        <Border CornerRadius="10" Grid.Column="0" Grid.Row="0" BorderBrush="#f1ece7" BorderThickness="1" Margin="30,30,0,30">
             <!-- Contenido -->
             <StackPanel>
-                <TextBlock Text="TO DO" TextAlignment="Center" FontWeight="Bold"  Foreground="Black" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#f1ece7"></TextBlock>
-                <ListBox Name="Llistattodo" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}" Height="507">
+                <TextBlock Text="TO DO" TextAlignment="Center" FontWeight="Bold"  Foreground="Black" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#f1ece7"/>
+                <ListBox ScrollViewer.VerticalScrollBarVisibility="Hidden" Name="llistattodo" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalContentAlignment="Stretch" Height="540" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border CornerRadius="10" Background="#f1ece7" BorderBrush="Black">
                                 <StackPanel Margin="7">
-                                    <Border HorizontalAlignment="Right" Background="#114358" Margin="0 0 5 0" CornerRadius="10" Height="20" Width="20">
-                                        <Button Content="E" BorderBrush="Transparent" Foreground="White" Background="Transparent" Margin="-1,-1,-1,-1" Click="EditarTasca_Click"/>
-                                    </Border>
                                     <TextBlock Text="{Binding ID}" FontWeight="Bold"/>
-                                    <Separator Height="5px"></Separator>
-                                    <TextBlock Text="{Binding Titol}" FontWeight="Bold"/>
-                                    <TextBlock Text="{Binding Descripcio}" Margin="0,0,0,10"/>
-                                    <TextBlock Text="Data Creació" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="93"/>
-                                    <TextBlock Text="{Binding DataCreacio}" Margin="0,0,0,10"/>
-                                    <TextBlock Text="Data Finalització" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                                    <TextBlock Text="{Binding DataFinalitzacio}" Margin="0,0,0,10"/>
-                                    <TextBlock Text="Responsable" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                                    <TextBlock Text="{Binding Responsable}" Margin="0,0,0,10"/>
+                                    <Separator Background="Black" Height="5px"></Separator>
+                                    <TextBlock Text="{Binding Titol}" FontSize="24" FontWeight="Bold"/>
+                                    <Separator Background="Black" Height="5px"></Separator>
+                                    <TextBlock Text="Estat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
+                                    <TextBlock Text="{Binding Estat}" Margin="0,0,0,10"/>
                                     <TextBlock Text="Prioritat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                                    <TextBlock Text="{Binding Prioritat}" Margin="0,0,0,10" x:Name="BackGroundPrioritat">
+                                    <TextBlock Text="{Binding Prioritat}" FontWeight="Bold" Height="30"  FontSize="19" Margin="0,0,0,10">
                                         <TextBlock.Style>
                                             <Style TargetType="{x:Type TextBlock}">
                                                 <Style.Triggers>
@@ -67,9 +59,17 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <Border HorizontalAlignment="Left" Background="#114358" Margin="0 0 5 0" CornerRadius="10" Height="20" Width="20">
-                                        <Button Content="D" BorderBrush="Transparent" Foreground="White" Background="Transparent" Margin="-1,-1,-1,-1" Click="EliminarTasca_Click"/>
-                                    </Border>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click" RenderTransformOrigin="0.17,0.215" Height="23" Width="23">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/lapiz.png" Width="19" Height="20" />
+                                        </Button>
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/eliminar.png" Width="23" Height="22" />
+                                        </Button>
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/plus.png" Width="23" Height="22" />
+                                        </Button>
+                                    </StackPanel>
                                 </StackPanel>
                             </Border>
                         </DataTemplate>
@@ -77,43 +77,167 @@
                 </ListBox>
             </StackPanel>
         </Border>
-
         <!-- segunda columna (margen) -->
         <Border Grid.Column="1" BorderBrush="Transparent" BorderThickness="0" Margin="5,1,5,371" Grid.Row="1"/>
-
         <!-- tercera columna -->
-        <Border Grid.Column="2" Grid.Row="0"  BorderBrush="#114358" BorderThickness="1" Margin="10,30,10,30">
+        <Border CornerRadius="10" Grid.Column="2" Grid.Row="0"  BorderBrush="#114358" BorderThickness="1" Margin="10,30,10,30">
             <!-- Contenido -->
             <StackPanel>
                 <TextBlock Text="DOING" TextAlignment="Center" FontWeight="Bold"  Foreground="White" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#114358"/>
-                <ListBox Name="llistatdoing" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
+                <ListBox ScrollViewer.VerticalScrollBarVisibility="Hidden" Name="llistatdoing" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalContentAlignment="Stretch" Height="540" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="10" Background="#114358" BorderBrush="Black">
+                                <StackPanel Margin="7">
+                                    <TextBlock Text="{Binding ID}" Foreground="White" FontWeight="Bold"/>
+                                    <Separator Background="White" Height="5px"></Separator>
+                                    <TextBlock Text="{Binding Titol}" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                                    <Separator Background="White" Height="5px"></Separator>
+                                    <TextBlock Text="Estat" Foreground="White" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
+                                    <TextBlock Text="{Binding Estat}" Foreground="White" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Prioritat" Foreground="White" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
+                                    <TextBlock Text="{Binding Prioritat}" FontWeight="Bold" Height="30"  FontSize="19"  Margin="0,0,0,10">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Alta">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Mitja">
+                                                        <Setter Property="Background" Value="Yellow"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Baixa">
+                                                        <Setter Property="Background" Value="White"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click" RenderTransformOrigin="0.17,0.215" Height="23" Width="23">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/lapizwhite.png" Width="19" Height="20" />
+                                        </Button>
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22" />
+                                        </Button>
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/pluswhite.png" Width="23" Height="22" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
-
         </Border>
-
         <!-- 4 Columna (margen) -->
         <Border Grid.Column="3" BorderBrush="Transparent" BorderThickness="0" Margin="10,10,10,10"/>
-
         <!-- 5 Columna (margen) -->
-        <Border Grid.Column="4" Grid.Row="0"  BorderBrush="#f2aa1f" BorderThickness="1" Margin="10,30,10,30">
+        <Border CornerRadius="10" Grid.Column="4" Grid.Row="0"  BorderBrush="#f2aa1f" BorderThickness="1" Margin="10,30,10,30">
             <!--Contenido-->
             <StackPanel>
                 <TextBlock Text="IN REVIEW" TextAlignment="Center" FontWeight="Bold"  Foreground="Black" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#f2aa1f"/>
-                <ListBox Name="llistatinreview" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
+                <ListBox ScrollViewer.VerticalScrollBarVisibility="Hidden" Name="llistatinreview" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalContentAlignment="Stretch" Height="540" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border CornerRadius="10" Background="#f2aa1f" BorderBrush="Black">
+                                <StackPanel Margin="7">
+                                    <TextBlock Text="{Binding ID}" FontWeight="Bold"/>
+                                    <Separator Background="Black" Height="5px"></Separator>
+                                    <TextBlock Text="{Binding Titol}" FontSize="24" FontWeight="Bold"/>
+                                    <Separator Background="Black" Height="5px"></Separator>
+                                    <TextBlock Text="Estat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
+                                    <TextBlock Text="{Binding Estat}" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Prioritat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
+                                    <TextBlock Text="{Binding Prioritat}" FontWeight="Bold" Height="30"  FontSize="19"  Margin="0,0,0,10">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Alta">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Mitja">
+                                                        <Setter Property="Background" Value="Yellow"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Baixa">
+                                                        <Setter Property="Background" Value="White"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click" RenderTransformOrigin="0.17,0.215" Height="23" Width="23">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/lapiz.png" Width="19" Height="20" />
+                                        </Button>
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/eliminar.png" Width="23" Height="22" />
+                                        </Button>
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/plus.png" Width="23" Height="22" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
         </Border>
-
         <Border Grid.Column="5" BorderBrush="Transparent" BorderThickness="0" Margin="10,10,10,10"/>
-
         <!-- 5 Columna (margen) -->
-        <Border Grid.Column="6" Grid.Row="0" BorderBrush="#090909" BorderThickness="1" Margin="10,30,10,30">
+        <Border CornerRadius="10" Grid.Column="6" Grid.Row="0" BorderBrush="#090909" BorderThickness="1" Margin="10,30,10,30">
             <!--Contenido-->
             <StackPanel>
                 <TextBlock Text="COMPLETED" TextAlignment="Center" FontWeight="Bold"  Foreground="White" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#090909"/>
-                <ListBox Name="llistatcompleted" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}"></ListBox>
+                <ListBox ScrollViewer.VerticalScrollBarVisibility="Hidden" Name="llistatcompleted" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalContentAlignment="Stretch" Height="540" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Name="backroundcompleted" CornerRadius="10" Background="Black" BorderBrush="Black">
+                                <StackPanel Margin="7">
+                                    <TextBlock Text="{Binding ID}" Foreground="White" FontWeight="Bold"/>
+                                    <Separator Background="White" Height="5px"></Separator>
+                                    <TextBlock Text="{Binding Titol}" Foreground="White" FontSize="24" FontWeight="Bold"/>
+                                    <Separator Background="White" Height="5px"></Separator>
+                                    <TextBlock Text="Estat" HorizontalAlignment="Left" Foreground="White" FontWeight="Bold" FontStyle="Italic" Width="175"/>
+                                    <TextBlock Text="{Binding Estat}" Foreground="White" Margin="0,0,0,10"/>
+                                    <TextBlock Text="Prioritat" Foreground="White" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
+                                    <TextBlock Text="{Binding Prioritat}" FontWeight="Bold" Height="30" FontSize="19" Margin="0,0,0,10">
+                                        <TextBlock.Style>
+                                            <Style TargetType="{x:Type TextBlock}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Alta">
+                                                        <Setter Property="Background" Value="Red"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Mitja">
+                                                        <Setter Property="Background" Value="Yellow"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Prioritat}" Value="Baixa">
+                                                        <Setter Property="Background" Value="White"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click" RenderTransformOrigin="0.17,0.215" Height="23" Width="23">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/lapizwhite.png" Width="19" Height="20" />
+                                        </Button>
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22" />
+                                        </Button>
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/pluswhite.png" Width="23" Height="22" />
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
             </StackPanel>
         </Border>
-
         <Border Margin="50 0 80 10" Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="5" Background="#114358" CornerRadius="10">
             <!-- Contenido -->
             <Button Content="AFEGIR COLUMNA" FontWeight="Bold"  Foreground="White" Padding="4" BorderBrush="Transparent" Background="Transparent"/>
@@ -123,6 +247,5 @@
             <!-- Contenido -->
             <Button Content="AFEGIR TASCA" FontWeight="Bold" BorderBrush="Transparent" Foreground="White" Padding="4" Background="Transparent" Click="CrearTasca_Click"/>
         </Border>
-
     </Grid>
 </Window>

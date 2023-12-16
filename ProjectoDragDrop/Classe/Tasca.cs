@@ -17,6 +17,7 @@ namespace ProjecteDragDrop
         public string DataFinalitzacio { get; set; }
         public string Responsable { get; set; }
         public string Prioritat { get; set; }
+        public string Estat {  get; set; }
 
     }
     
