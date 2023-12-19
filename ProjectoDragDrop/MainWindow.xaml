@@ -181,14 +181,14 @@
         </Border>
         <Border Grid.Column="5" BorderBrush="Transparent" BorderThickness="0" Margin="10,10,10,10"/>
         <!-- 5 Columna (margen) -->
-        <Border CornerRadius="10" Grid.Column="6" Grid.Row="0" BorderBrush="#090909" BorderThickness="1" Margin="10,30,10,30">
+        <Border CornerRadius="10" Grid.Column="6" Grid.Row="0" BorderBrush="#16C172" BorderThickness="1" Margin="10,30,10,30">
             <!--Contenido-->
             <StackPanel>
-                <TextBlock Text="COMPLETED" TextAlignment="Center" FontWeight="Bold"  Foreground="White" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#090909"/>
+                <TextBlock Text="COMPLETED" TextAlignment="Center" FontWeight="Bold"  Foreground="White" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#16C172"/>
                 <ListBox ScrollViewer.VerticalScrollBarVisibility="Hidden" Name="llistatcompleted" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalContentAlignment="Stretch" Height="540" >
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border Name="backroundcompleted" CornerRadius="10" Background="Black" BorderBrush="Black">
+                            <Border Name="backroundcompleted" CornerRadius="10" Background="#16C172" BorderBrush="Black">
                                 <StackPanel Margin="7">
                                     <TextBlock Text="{Binding ID}" Foreground="White" FontWeight="Bold"/>
                                     <Separator Background="White" Height="5px"></Separator>
