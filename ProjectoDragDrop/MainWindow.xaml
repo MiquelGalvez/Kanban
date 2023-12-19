@@ -39,8 +39,6 @@
                                     <Separator Background="Black" Height="5px"></Separator>
                                     <TextBlock Text="{Binding Titol}" FontSize="24" FontWeight="Bold"/>
                                     <Separator Background="Black" Height="5px"></Separator>
-                                    <TextBlock Text="Estat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                                    <TextBlock Text="{Binding Estat}" Margin="0,0,0,10"/>
                                     <TextBlock Text="Prioritat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
                                     <TextBlock Text="{Binding Prioritat}" FontWeight="Bold" Height="30"  FontSize="19" Margin="0,0,0,10">
                                         <TextBlock.Style>
@@ -67,7 +65,7 @@
                                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminar.png" Width="23" Height="22" />
                                         </Button>
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
-                                            <Image Source="/ProjectoDragDrop;component/imagenes/plus.png" Width="23" Height="22" />
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/espectaculo.png" Width="23" Height="22" />
                                         </Button>
                                     </StackPanel>
                                 </StackPanel>
@@ -93,8 +91,6 @@
                                     <Separator Background="White" Height="5px"></Separator>
                                     <TextBlock Text="{Binding Titol}" Foreground="White" FontSize="24" FontWeight="Bold"/>
                                     <Separator Background="White" Height="5px"></Separator>
-                                    <TextBlock Text="Estat" Foreground="White" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                                    <TextBlock Text="{Binding Estat}" Foreground="White" Margin="0,0,0,10"/>
                                     <TextBlock Text="Prioritat" Foreground="White" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
                                     <TextBlock Text="{Binding Prioritat}" FontWeight="Bold" Height="30"  FontSize="19"  Margin="0,0,0,10">
                                         <TextBlock.Style>
@@ -121,7 +117,7 @@
                                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22" />
                                         </Button>
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
-                                            <Image Source="/ProjectoDragDrop;component/imagenes/pluswhite.png" Width="23" Height="22" />
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/espectaculowhite.png" Width="23" Height="22" />
                                         </Button>
                                     </StackPanel>
                                 </StackPanel>
@@ -147,8 +143,6 @@
                                     <Separator Background="Black" Height="5px"></Separator>
                                     <TextBlock Text="{Binding Titol}" FontSize="24" FontWeight="Bold"/>
                                     <Separator Background="Black" Height="5px"></Separator>
-                                    <TextBlock Text="Estat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                                    <TextBlock Text="{Binding Estat}" Margin="0,0,0,10"/>
                                     <TextBlock Text="Prioritat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
                                     <TextBlock Text="{Binding Prioritat}" FontWeight="Bold" Height="30"  FontSize="19"  Margin="0,0,0,10">
                                         <TextBlock.Style>
@@ -175,7 +169,7 @@
                                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminar.png" Width="23" Height="22" />
                                         </Button>
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
-                                            <Image Source="/ProjectoDragDrop;component/imagenes/plus.png" Width="23" Height="22" />
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/espectaculo.png" Width="23" Height="22" />
                                         </Button>
                                     </StackPanel>
                                 </StackPanel>
@@ -200,8 +194,6 @@
                                     <Separator Background="White" Height="5px"></Separator>
                                     <TextBlock Text="{Binding Titol}" Foreground="White" FontSize="24" FontWeight="Bold"/>
                                     <Separator Background="White" Height="5px"></Separator>
-                                    <TextBlock Text="Estat" HorizontalAlignment="Left" Foreground="White" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                                    <TextBlock Text="{Binding Estat}" Foreground="White" Margin="0,0,0,10"/>
                                     <TextBlock Text="Prioritat" Foreground="White" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
                                     <TextBlock Text="{Binding Prioritat}" FontWeight="Bold" Height="30" FontSize="19" Margin="0,0,0,10">
                                         <TextBlock.Style>
@@ -228,7 +220,7 @@
                                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22" />
                                         </Button>
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
-                                            <Image Source="/ProjectoDragDrop;component/imagenes/pluswhite.png" Width="23" Height="22" />
+                                            <Image Source="/ProjectoDragDrop;component/imagenes/espectaculowhite.png" Width="23" Height="22" />
                                         </Button>
                                     </StackPanel>
                                 </StackPanel>
