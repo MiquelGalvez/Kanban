@@ -58,10 +58,10 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureEsquerra_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda.png" Width="23" Height="22" />
                                         </Button>
-                                        <Button Margin="0,0,50,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button Margin="0,0,50,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureDreta_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-correcta.png" Width="23" Height="22" />
                                         </Button>
                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click" RenderTransformOrigin="0.17,0.215" Height="23" Width="23">
@@ -117,10 +117,10 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureEsquerra_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda-white.png" Width="23" Height="22" />
                                         </Button>
-                                        <Button Margin="0,0,50,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button Margin="0,0,50,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureDreta_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-correcta-white.png" Width="23" Height="22" />
                                         </Button>
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click" RenderTransformOrigin="0.17,0.215" Height="23" Width="23">
@@ -178,7 +178,7 @@
                                         <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureEsquerra_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda.png" Width="23" Height="22" />
                                         </Button>
-                                        <Button Margin="0,0,50,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button Margin="0,0,50,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureDreta_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-correcta.png" Width="23" Height="22" />
                                         </Button>
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click" RenderTransformOrigin="0.17,0.215" Height="23" Width="23">
@@ -232,10 +232,10 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                        <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureEsquerra_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda-white.png" Width="23" Height="22" />
                                         </Button>
-                                        <Button Margin="0,0,50,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button Margin="0,0,50,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureDreta_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-correcta-white.png" Width="23" Height="22" />
                                         </Button>
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click" RenderTransformOrigin="0.17,0.215" Height="23" Width="23">

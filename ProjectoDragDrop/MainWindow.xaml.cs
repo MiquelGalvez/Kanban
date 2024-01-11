@@ -137,18 +137,44 @@ namespace ProjectoDragDrop
             if (tasca.Estat == "TO DO")
             {
                 llistattodo.Items.Remove(tasca);
+                tasca.Estat = "DOING";
             }
             else if (tasca.Estat == "DOING")
             {
                 llistatdoing.Items.Remove(tasca);
+                tasca.Estat = "IN REVIEW";
             }
             else if (tasca.Estat == "IN REVIEW")
             {
                 llistatinreview.Items.Remove(tasca);
+                tasca.Estat = "COMPLETED";
             }
             else if (tasca.Estat == "COMPLETED")
             {
                 llistatcompleted.Items.Remove(tasca);
+            }
+        }
+
+        private void comporvarEstatEs(Tasca tasca)
+        {
+            if (tasca.Estat == "TO DO")
+            {
+                llistattodo.Items.Remove(tasca);
+            }
+            else if (tasca.Estat == "DOING")
+            {
+                llistatdoing.Items.Remove(tasca);
+                tasca.Estat = "TO DO";
+            }
+            else if (tasca.Estat == "IN REVIEW")
+            {
+                llistatinreview.Items.Remove(tasca);
+                tasca.Estat = "DOING";
+            }
+            else if (tasca.Estat == "COMPLETED")
+            {
+                llistatcompleted.Items.Remove(tasca);
+                tasca.Estat = "IN REVIEW";
             }
         }
         private void afeigrEstat(Tasca tasca)
@@ -171,9 +197,20 @@ namespace ProjectoDragDrop
             }
         }
 
+        private void MoureDreta_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            Tasca tasca = (Tasca)button.DataContext;
+            comporvarEstat(tasca);
+            afeigrEstat(tasca);
+        }
+
         private void MoureEsquerra_Click(object sender, RoutedEventArgs e)
         {
-
+            Button button = (Button)sender;
+            Tasca tasca = (Tasca)button.DataContext;
+            comporvarEstatEs(tasca);
+            afeigrEstat(tasca);
         }
     }
 }
