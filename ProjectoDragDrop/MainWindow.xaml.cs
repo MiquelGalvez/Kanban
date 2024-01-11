@@ -171,5 +171,9 @@ namespace ProjectoDragDrop
             }
         }
 
+        private void MoureEsquerra_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

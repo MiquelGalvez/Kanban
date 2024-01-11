@@ -246,5 +246,15 @@
   <ItemGroup>
     <Resource Include="imagenes\espectaculowhite.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\flecha-correcta.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\flecha-izqueirda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\flecha-correcta-white.png" />
+    <Resource Include="imagenes\flecha-izqueirda-white.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
