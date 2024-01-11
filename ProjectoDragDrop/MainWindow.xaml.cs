@@ -70,9 +70,6 @@ namespace ProjectoDragDrop
             creartasca.responsables.Text = tasca.Responsable;
             creartasca.DescripcioTasca.Text = tasca.Descripcio;
             creartasca.Datafinalització.Text = tasca.DataFinalitzacio;
-            creartasca.estats.Text = tasca.Estat;
-
-            comporvarEstat(tasca);
 
             // Show the CrearTasca window to allow the user to edit the task
             creartasca.ShowDialog();
@@ -86,31 +83,27 @@ namespace ProjectoDragDrop
                 tasca.Responsable = creartasca.responsables.Text;
                 tasca.Descripcio = creartasca.DescripcioTasca.Text;
                 tasca.DataFinalitzacio = creartasca.Datafinalització.Text;
-                tasca.Estat = creartasca.estats.Text;
+                
 
                 if (tasca.Estat == "TO DO")
                 {
                     // Update the ListBox to reflect the changes
-                    int index_todo = llistattodo.Items.IndexOf(tasca);
-                    llistattodo.Items.Add(tasca);
+                    llistattodo.Items.Refresh();
                 }
                 else if (tasca.Estat == "DOING")
                 {
                     // Update the ListBox to reflect the changes
-                    int index_doing = llistattodo.Items.IndexOf(tasca);
-                    llistatdoing.Items.Add(tasca);
+                    llistatdoing.Items.Refresh();
                 }
                 else if (tasca.Estat == "IN REVIEW")
                 {
                     // Update the ListBox to reflect the changes
-                    int index_inreview = llistattodo.Items.IndexOf(tasca);
-                    llistatinreview.Items.Add(tasca);
+                    llistatinreview.Items.Refresh();
                 }
                 else if (tasca.Estat == "COMPLETED")
                 {
                     // Update the ListBox to reflect the changes
-                    int index_completed = llistattodo.Items.IndexOf(tasca);
-                    llistatcompleted.Items.Add(tasca);
+                    llistatcompleted.Items.Refresh();
                 }
             }
         }
