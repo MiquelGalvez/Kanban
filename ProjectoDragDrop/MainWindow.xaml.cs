@@ -52,7 +52,7 @@ namespace ProjectoDragDrop
         private void EliminarTasca_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            // Obtén el DataContext del botó, que hauria de ser l'objecte de dades associat a l'element de la llista.
+            // Obté el DataContext del botó, que hauria de ser l'objecte de dades associat a l'element de la llista.
             Tasca tasca = (Tasca)button.DataContext;
             comporvarEstat(tasca);
         }
@@ -71,7 +71,6 @@ namespace ProjectoDragDrop
             creartasca.DescripcioTasca.Text = tasca.Descripcio;
             creartasca.Datafinalització.Text = tasca.DataFinalitzacio;
 
-
             // Show the CrearTasca window to allow the user to edit the task
             creartasca.ShowDialog();
 
@@ -84,9 +83,11 @@ namespace ProjectoDragDrop
                 tasca.Responsable = creartasca.responsables.Text;
                 tasca.Descripcio = creartasca.DescripcioTasca.Text;
                 tasca.DataFinalitzacio = creartasca.Datafinalització.Text;
+                
 
                 if (tasca.Estat == "TO DO")
                 {
+                    // Update the ListBox to reflect the changes
                     llistattodo.Items.Refresh();
                 }
                 else if (tasca.Estat == "DOING")
@@ -107,7 +108,7 @@ namespace ProjectoDragDrop
             }
         }
 
-        private void VerTasca_Click(object sender, RoutedEventArgs e)
+        private void VeureTasca_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             Tasca tasca = (Tasca)button.DataContext;
@@ -121,6 +122,7 @@ namespace ProjectoDragDrop
             creartasca.descripcio.Content = tasca.Descripcio;
             creartasca.datafinalitzacio.Content = tasca.DataFinalitzacio;
             creartasca.estat.Content = tasca.Estat;
+            creartasca.datacreacio.Content = tasca.DataCreacio;
 
             // Show the CrearTasca window to allow the user to edit the task
             creartasca.ShowDialog();

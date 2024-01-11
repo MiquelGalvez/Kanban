@@ -112,7 +112,6 @@ namespace ProjectoDragDrop.FormulariCrearTasca
             // Assignació de la llista com a origen de dades per a l'element responsables
             responsables.ItemsSource = llistatreponsables;
 
-
         }
 
     }
