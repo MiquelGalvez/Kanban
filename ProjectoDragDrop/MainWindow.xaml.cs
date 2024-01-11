@@ -52,7 +52,7 @@ namespace ProjectoDragDrop
         private void EliminarTasca_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            // Obtén el DataContext del botó, que hauria de ser l'objecte de dades associat a l'element de la llista.
+            // Obté el DataContext del botó, que hauria de ser l'objecte de dades associat a l'element de la llista.
             Tasca tasca = (Tasca)button.DataContext;
             comporvarEstat(tasca);
         }
@@ -70,7 +70,9 @@ namespace ProjectoDragDrop
             creartasca.responsables.Text = tasca.Responsable;
             creartasca.DescripcioTasca.Text = tasca.Descripcio;
             creartasca.Datafinalització.Text = tasca.DataFinalitzacio;
+            creartasca.estats.Text = tasca.Estat;
 
+            comporvarEstat(tasca);
 
             // Show the CrearTasca window to allow the user to edit the task
             creartasca.ShowDialog();
@@ -84,30 +86,36 @@ namespace ProjectoDragDrop
                 tasca.Responsable = creartasca.responsables.Text;
                 tasca.Descripcio = creartasca.DescripcioTasca.Text;
                 tasca.DataFinalitzacio = creartasca.Datafinalització.Text;
+                tasca.Estat = creartasca.estats.Text;
 
                 if (tasca.Estat == "TO DO")
                 {
-                    llistattodo.Items.Refresh();
+                    // Update the ListBox to reflect the changes
+                    int index_todo = llistattodo.Items.IndexOf(tasca);
+                    llistattodo.Items.Add(tasca);
                 }
                 else if (tasca.Estat == "DOING")
                 {
                     // Update the ListBox to reflect the changes
-                    llistatdoing.Items.Refresh();
+                    int index_doing = llistattodo.Items.IndexOf(tasca);
+                    llistatdoing.Items.Add(tasca);
                 }
                 else if (tasca.Estat == "IN REVIEW")
                 {
                     // Update the ListBox to reflect the changes
-                    llistatinreview.Items.Refresh();
+                    int index_inreview = llistattodo.Items.IndexOf(tasca);
+                    llistatinreview.Items.Add(tasca);
                 }
                 else if (tasca.Estat == "COMPLETED")
                 {
                     // Update the ListBox to reflect the changes
-                    llistatcompleted.Items.Refresh();
+                    int index_completed = llistattodo.Items.IndexOf(tasca);
+                    llistatcompleted.Items.Add(tasca);
                 }
             }
         }
 
-        private void VerTasca_Click(object sender, RoutedEventArgs e)
+        private void VeureTasca_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             Tasca tasca = (Tasca)button.DataContext;
@@ -121,6 +129,7 @@ namespace ProjectoDragDrop
             creartasca.descripcio.Content = tasca.Descripcio;
             creartasca.datafinalitzacio.Content = tasca.DataFinalitzacio;
             creartasca.estat.Content = tasca.Estat;
+            creartasca.datacreacio.Content = tasca.DataCreacio;
 
             // Show the CrearTasca window to allow the user to edit the task
             creartasca.ShowDialog();
