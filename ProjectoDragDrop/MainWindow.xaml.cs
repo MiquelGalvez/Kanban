@@ -52,7 +52,7 @@ namespace ProjectoDragDrop
         private void EliminarTasca_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            // Obtén el DataContext del botó, que hauria de ser l'objecte de dades associat a l'element de la llista.
+            // Obté el DataContext del botó, que hauria de ser l'objecte de dades associat a l'element de la llista.
             Tasca tasca = (Tasca)button.DataContext;
             comporvarEstat(tasca);
         }
@@ -115,7 +115,7 @@ namespace ProjectoDragDrop
             }
         }
 
-        private void VerTasca_Click(object sender, RoutedEventArgs e)
+        private void VeureTasca_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             Tasca tasca = (Tasca)button.DataContext;
@@ -129,6 +129,7 @@ namespace ProjectoDragDrop
             creartasca.descripcio.Content = tasca.Descripcio;
             creartasca.datafinalitzacio.Content = tasca.DataFinalitzacio;
             creartasca.estat.Content = tasca.Estat;
+            creartasca.datacreacio.Content = tasca.DataCreacio;
 
             // Show the CrearTasca window to allow the user to edit the task
             creartasca.ShowDialog();

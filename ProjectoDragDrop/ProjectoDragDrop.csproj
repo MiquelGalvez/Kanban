@@ -235,12 +235,6 @@
     <Resource Include="imagenes\lapiz.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imagenes\plus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="imagenes\pluswhite.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="imagenes\lapizwhite.png" />
   </ItemGroup>
   <ItemGroup>

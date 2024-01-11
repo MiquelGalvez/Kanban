@@ -18,42 +18,49 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Foreground="White" Grid.Row="0" Text="MES INFORMACIÓ" FontSize="34" Background="#114358" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2"></TextBlock>
         <Border Margin="14,10,20,0" Grid.Column="0" Grid.Row="1" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
-                <Label Content="Títol :" FontSize="20" FontWeight="Bold" Width="364"/>
-                <Label x:Name="titol" FontSize="16" Height="35"/>
+                <Label Content="Títol :" FontSize="20" FontWeight="Bold" Width="364" Height="33"/>
+                <Label x:Name="titol" FontSize="16" Height="30"/>
             </StackPanel>
         </Border>
         <Border Margin="14,10,20,0" Grid.Column="1" Grid.Row="1" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
-                <Label Content="Prioritat :" FontSize="20" FontWeight="Bold" Width="364"/>
-                <Label x:Name="prioritat" FontSize="16" Height="35"/>
+                <Label Content="Prioritat :" FontSize="20" FontWeight="Bold" Width="364" Height="34"/>
+                <Label x:Name="prioritat" FontSize="16" Height="29"/>
             </StackPanel>
         </Border>
         <Border Margin="14,10,20,0" Grid.Column="0" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
-                <Label Content="DataFinalització :" FontSize="20" FontWeight="Bold" Width="364"/>
-                <Label x:Name="datafinalitzacio" FontSize="16" Height="35"/>
+                <Label Content="DataFinalització :" FontSize="20" FontWeight="Bold" Width="364" Height="32"/>
+                <Label x:Name="datafinalitzacio" FontSize="16" Height="31"/>
+            </StackPanel>
+        </Border>
+        <Border Margin="14,10,20,0" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Background="#f1ece7" CornerRadius="10">
+            <StackPanel>
+                <Label Content="Data Creació :" FontSize="20" FontWeight="Bold" Width="786" Height="32"/>
+                <Label x:Name="datacreacio" FontSize="16" Height="30"/>
             </StackPanel>
         </Border>
         <Border Margin="14,10,20,0" Grid.Column="1" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
-                <Label Content="Responsable :" FontSize="20" FontWeight="Bold" Width="364"/>
-                <Label x:Name="responsable" FontSize="16" Height="35"/>
+                <Label Content="Responsable :" FontSize="20" FontWeight="Bold" Width="364" Height="32"/>
+                <Label x:Name="responsable" FontSize="16" Height="30"/>
             </StackPanel>
         </Border>
-        <Border Margin="18,17,22,14" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" Background="#f1ece7" CornerRadius="10">
+        <Border Margin="18,17,22,14" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Grid.RowSpan="2" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
                 <Label Content="Descripció :" FontSize="20" FontWeight="Bold"></Label>
-                <Label Name="descripcio" FontSize="16" Height="106"></Label>
+                <Label Name="descripcio" FontSize="16" Height="78"></Label>
             </StackPanel>
         </Border>
-        <Border Margin="14,10,20,0" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Background="#f1ece7" CornerRadius="10">
+        <Border Margin="14,10,20,0" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
-                <Label Content="Estat :" FontSize="20" FontWeight="Bold" Width="764"/>
-                <Label x:Name="estat" FontSize="16" Height="35"/>
+                <Label Content="Estat :" FontSize="20" FontWeight="Bold" Width="764" Height="33"/>
+                <Label x:Name="estat" FontSize="16" Height="29"/>
             </StackPanel>
         </Border>
     </Grid>
