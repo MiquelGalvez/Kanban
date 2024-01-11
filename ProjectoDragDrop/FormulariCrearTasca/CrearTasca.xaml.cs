@@ -33,34 +33,30 @@ namespace ProjectoDragDrop.FormulariCrearTasca
         // Gestor d'esdeveniments per al clic al botó Crear
         private void CrearButton_Click(object sender, RoutedEventArgs e)
         {
-            // Suposant que Datafinalització.Text és la representació de cadena de la data
-            if (DateTime.TryParse(Datafinalització.Text, out DateTime dataFinalitzacio))
+            // Suposant que dp1.Text és la representació de cadena de la data
+            if (DateTime.TryParse(dp1.Text, out DateTime dataFinalitzacio))
             {
-                
                 // Obtenir la data i hora actual
                 DateTime dataCreacio = DateTime.Now;
 
-                // Comprovar si la data de finalització és posterior a la data de creació
-                if (dataFinalitzacio > dataCreacio)
+                // Permetre que la data de finalització sigui el mateix dia que la data de creació
+                if (dataFinalitzacio >= dataCreacio.Date)
                 {
                     // Creació d'una nova Tasca amb les dades proporcionades
                     Tasca newTask = new Tasca
                     {
                         Titol = Titol.Text,
                         Descripcio = DescripcioTasca.Text,
-                        // Format de la data de creació en el foramt desitjat
-                        DataCreacio = dataCreacio.ToString("dd/MM/yyyy HH:mm:ss"),
+                        // Format de la data de creació en el format desitjat
+                        DataCreacio = dataCreacio.ToString("dd/MM/yyyy"),
                         DataFinalitzacio = dataFinalitzacio.ToString("dd/MM/yyyy"),
                         // Obtenir el responsable seleccionat o posar "Sense Assignar" per defecte
                         Responsable = (responsables.SelectedItem as Tasca)?.Responsable ?? "Sense Asignar",
                         // Obtenir la prioritat seleccionada o posar "Baixa" per defecte
                         Prioritat = (prioritats.SelectedItem as Tasca)?.Prioritat ?? "Baixa",
-                        // Obtenir el responsable seleccionat o posar "Sense Assignar" per defecte
+                        // Obtenir l'estat per defecte "TO DO"
                         Estat = "TO DO",
-
-
                     };
-                    
 
                     // Assignació de la Tasca creada a la propietat CreatedTask
                     CreatedTask = newTask;
@@ -73,8 +69,8 @@ namespace ProjectoDragDrop.FormulariCrearTasca
                 }
                 else
                 {
-                    // Mostrar missatge d'error si la data de finalització no és posterior a la data de creació
-                    MessageBox.Show("La data de finalització ha de ser posterior a la data de creació");
+                    // Mostrar missatge d'error si la data de finalització no és igual o posterior a la data de creació
+                    MessageBox.Show("La data de finalització ha de ser igual o posterior a la data de creació");
                 }
             }
             else
@@ -83,6 +79,7 @@ namespace ProjectoDragDrop.FormulariCrearTasca
                 MessageBox.Show("Format de data no vàlid per a DataFinalitzacio");
             }
         }
+
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             // Quan el TextBox rep el focus, el seu contingut es canvia a una cadena buida

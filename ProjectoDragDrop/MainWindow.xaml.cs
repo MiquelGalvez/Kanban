@@ -42,7 +42,6 @@ namespace ProjectoDragDrop
                 Tasca novaTasca = creartasca.CreatedTask;
                 novaTasca.ID = "ID: " + counterID.ToString();
                 // Afegeix la tasca al listbox anomenat llistattodo
-
                 afeigrEstat(novaTasca);
                 counterID++;
 
@@ -64,45 +63,45 @@ namespace ProjectoDragDrop
 
             CrearTasca creartasca = new CrearTasca();
 
-            // Set the fields of CrearTasca window with the values of the selected task for editing
+            // Posem els valors ja introduits dins de la tasca pero despres poder canviarlos respecte als qeu ja tenim en una primera isntancia
             creartasca.Titol.Text = tasca.Titol;
             creartasca.prioritats.Text = tasca.Prioritat;
             creartasca.responsables.Text = tasca.Responsable;
             creartasca.DescripcioTasca.Text = tasca.Descripcio;
-            creartasca.Datafinalització.Text = tasca.DataFinalitzacio;
+            creartasca.dp1.Text = tasca.DataFinalitzacio;
 
-            // Show the CrearTasca window to allow the user to edit the task
+            // Mostrem la finestra de crear Tasca
             creartasca.ShowDialog();
 
-            // After closing the dialog, get the task from the dialog
+            
             if (creartasca.DialogResult == true)
             {
-                // Update the task with the edited values
+                // Canviem els valor de la tasca per els valors escrits dins de la finestra d'editar tasca
                 tasca.Titol = creartasca.Titol.Text;
                 tasca.Prioritat = creartasca.prioritats.Text;
                 tasca.Responsable = creartasca.responsables.Text;
                 tasca.Descripcio = creartasca.DescripcioTasca.Text;
-                tasca.DataFinalitzacio = creartasca.Datafinalització.Text;
+                tasca.DataFinalitzacio = creartasca.dp1.Text;
                 
 
                 if (tasca.Estat == "TO DO")
                 {
-                    // Update the ListBox to reflect the changes
+                    // Recarregem els items dels listbox per poder veure el canvis
                     llistattodo.Items.Refresh();
                 }
                 else if (tasca.Estat == "DOING")
                 {
-                    // Update the ListBox to reflect the changes
+                    // Recarregem els items dels listbox per poder veure el canvis
                     llistatdoing.Items.Refresh();
                 }
                 else if (tasca.Estat == "IN REVIEW")
                 {
-                    // Update the ListBox to reflect the changes
+                    // Recarregem els items dels listbox per poder veure el canvis
                     llistatinreview.Items.Refresh();
                 }
                 else if (tasca.Estat == "COMPLETED")
                 {
-                    // Update the ListBox to reflect the changes
+                    // Recarregem els items dels listbox per poder veure el canvis
                     llistatcompleted.Items.Refresh();
                 }
             }
@@ -115,7 +114,7 @@ namespace ProjectoDragDrop
 
             VeureTasca creartasca = new VeureTasca();
 
-            // Set the fields of CrearTasca window with the values of the selected task for editing
+            // El que fa es posar als tetxbox, l'informació de la tasca seleccionada.
             creartasca.titol.Content = tasca.Titol;
             creartasca.prioritat.Content = tasca.Prioritat;
             creartasca.responsable.Content = tasca.Responsable;
@@ -123,8 +122,9 @@ namespace ProjectoDragDrop
             creartasca.datafinalitzacio.Content = tasca.DataFinalitzacio;
             creartasca.estat.Content = tasca.Estat;
             creartasca.datacreacio.Content = tasca.DataCreacio;
+            
 
-            // Show the CrearTasca window to allow the user to edit the task
+            // Mostrem la finestra per verue l'informació de la tasca 
             creartasca.ShowDialog();
 
             if (creartasca.DialogResult == true)
@@ -132,6 +132,7 @@ namespace ProjectoDragDrop
             }
         }
 
+        //Funció que es crida al fer clic al botó per moure cap a la dreta la tasca i el qeu fa es actualitzar l'estat al seguent estat disponible
         private void comporvarEstat(Tasca tasca)
         {
             if (tasca.Estat == "TO DO")
@@ -154,7 +155,8 @@ namespace ProjectoDragDrop
                 llistatcompleted.Items.Remove(tasca);
             }
         }
-
+ 
+        //Funció que es crida al fer clic al botó per moure cap a l'esquerra la tasca i el qeu fa es actualitzar l'estat al seguent estat disponible
         private void comporvarEstatEs(Tasca tasca)
         {
             if (tasca.Estat == "TO DO")
@@ -177,6 +179,9 @@ namespace ProjectoDragDrop
                 tasca.Estat = "IN REVIEW";
             }
         }
+
+
+        //Funcio per un cop actualitzat l'estat de la tasca, afegeixi a la nova columna la tasca
         private void afeigrEstat(Tasca tasca)
         {
             if (tasca.Estat == "TO DO")
@@ -197,6 +202,8 @@ namespace ProjectoDragDrop
             }
         }
 
+
+        //Funcio per moure a la dreta i canviar d'estat les tasques
         private void MoureDreta_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
@@ -205,6 +212,8 @@ namespace ProjectoDragDrop
             afeigrEstat(tasca);
         }
 
+
+        //Funcio per moure a l'esquerra i canviar d'estat les tasques
         private void MoureEsquerra_Click(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
