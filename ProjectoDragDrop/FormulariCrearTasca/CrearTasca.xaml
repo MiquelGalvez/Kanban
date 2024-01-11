@@ -40,7 +40,7 @@
             </StackPanel>
         </Border>
         <Border Margin="18,17,22,14" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="3" Background="#f1ece7" CornerRadius="10">
-            <TextBox GotFocus="TextBox_GotFocus" Name="DescripcioTasca" Background="Transparent" Text="Descripció" FontSize="20" BorderThickness="0" Margin="20,10"/>
+            <TextBox GotFocus="TextBox_GotFocus" Name="DescripcioTasca" Background="Transparent" Text="Descripció" FontSize="20" BorderThickness="0" Margin="20,10" TextWrapping="Wrap"/>
         </Border>
         <Border Margin="320,20,311,11" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Background="#114358" CornerRadius="10">
             <Button Name="CrearButton" Content="CREAR" Click="CrearButton_Click"
