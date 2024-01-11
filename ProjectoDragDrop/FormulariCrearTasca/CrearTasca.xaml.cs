@@ -56,7 +56,7 @@ namespace ProjectoDragDrop.FormulariCrearTasca
                         // Obtenir la prioritat seleccionada o posar "Baixa" per defecte
                         Prioritat = (prioritats.SelectedItem as Tasca)?.Prioritat ?? "Baixa",
                         // Obtenir el responsable seleccionat o posar "Sense Assignar" per defecte
-                        Estat = (estats.SelectedItem as Tasca)?.Estat ?? "TO DO",
+                        Estat = "TO DO",
 
 
                     };
@@ -112,14 +112,6 @@ namespace ProjectoDragDrop.FormulariCrearTasca
             // Assignació de la llista com a origen de dades per a l'element responsables
             responsables.ItemsSource = llistatreponsables;
 
-            List<Tasca> llistatsestats = new List<Tasca>();
-            llistatsestats.Add(new Tasca { Estat = "TO DO" });
-            llistatsestats.Add(new Tasca { Estat = "DOING" });
-            llistatsestats.Add(new Tasca { Estat = "IN REVIEW" });
-            llistatsestats.Add(new Tasca { Estat = "COMPLETED" });
-
-            // Assignació de la llista com a origen de dades per a l'element estats
-            estats.ItemsSource = llistatsestats;
 
         }
 

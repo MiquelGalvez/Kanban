@@ -39,14 +39,8 @@
                 <ComboBox Background="Transparent" FontSize="20" x:Name="responsables" DisplayMemberPath="Responsable"/>
             </StackPanel>
         </Border>
-        <Border Margin="18,17,22,14" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" Background="#f1ece7" CornerRadius="10">
-            <TextBox GotFocus="TextBox_GotFocus" Name="DescripcioTasca" Background="Transparent" Text="Descripció" FontSize="20" VerticalAlignment="Top" BorderThickness="0" Margin="16,10,20,0" Height="75"/>
-        </Border>
-        <Border Margin="18,4,21,3" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Background="#f1ece7" CornerRadius="10">
-            <StackPanel>
-                <Label Content="Estats" FontSize="16" FontWeight="Bold"></Label>
-                <ComboBox Background="Transparent" FontSize="20" x:Name="estats" DisplayMemberPath="Estat"/>
-            </StackPanel>
+        <Border Margin="18,17,22,14" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="3" Background="#f1ece7" CornerRadius="10">
+            <TextBox GotFocus="TextBox_GotFocus" Name="DescripcioTasca" Background="Transparent" Text="Descripció" FontSize="20" BorderThickness="0" Margin="20,10"/>
         </Border>
         <Border Margin="320,20,311,11" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Background="#114358" CornerRadius="10">
             <Button Name="CrearButton" Content="CREAR" Click="CrearButton_Click"

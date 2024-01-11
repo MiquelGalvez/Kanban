@@ -64,7 +64,7 @@
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminar.png" Width="23" Height="22" />
                                         </Button>
-                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/espectaculo.png" Width="23" Height="22" />
                                         </Button>
                                     </StackPanel>
@@ -116,7 +116,7 @@
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22" />
                                         </Button>
-                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/espectaculowhite.png" Width="23" Height="22" />
                                         </Button>
                                     </StackPanel>
@@ -168,7 +168,7 @@
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminar.png" Width="23" Height="22" />
                                         </Button>
-                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/espectaculo.png" Width="23" Height="22" />
                                         </Button>
                                     </StackPanel>
@@ -219,7 +219,7 @@
                                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22" />
                                         </Button>
-                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureTasca_Click">
+                                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VerTasca_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/espectaculowhite.png" Width="23" Height="22" />
                                         </Button>
                                     </StackPanel>
