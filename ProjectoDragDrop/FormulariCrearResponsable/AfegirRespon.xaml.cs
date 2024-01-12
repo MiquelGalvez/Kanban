@@ -1,5 +1,6 @@
 ﻿using ProjecteDragDrop;
 using ProjectoDragDrop.Classe;
+using ProjectoDragDrop.FormulariCrearTasca;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,18 +25,18 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
                 {
                     Nom = Name_new.Text,
                     Cognoms = LastName.Text,
-                    // Set other properties as needed based on your Responsable class
                 };
-
-                // You may want to perform additional validation or processing here
-
-                // Set the CreatedTask property to the new Responsable object
                 CreatedTask = newResponsable;
+                (Owner as CrearTasca)?.AgregarResponsableALista(newResponsable.Nom);
 
-                // Optionally, you can close or navigate away from this page
-                // For example, you can navigate back to the previous page:
-                // NavigationService?.GoBack();
+                // Limpiar los TextBox después de agregar el responsable
+                Name_new.Text = string.Empty;
+                LastName.Text = string.Empty;
+
+                // Cierra la ventana actual
+                Close();
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"Error creating Responsable: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
