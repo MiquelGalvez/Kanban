@@ -17,7 +17,9 @@ namespace ProjectoDragDrop.FormulariCrearTasca
 {
     public partial class CrearTasca : Window
     {
-        
+
+        private List<Tasca> llistatReponsables;
+
         // Propietat interna per emmagatzemar la Tasca creada
         internal Tasca CreatedTask { get; private set; }
 
@@ -25,6 +27,7 @@ namespace ProjectoDragDrop.FormulariCrearTasca
         public CrearTasca()
         {
             InitializeComponent();
+            llistatReponsables = new List<Tasca>();
             CrearLlistats();
         }
 
@@ -89,6 +92,7 @@ namespace ProjectoDragDrop.FormulariCrearTasca
 
         private void CrearLlistats()
         {
+
             // Inicialització d'una llista de prioritats per posar al combobox de proprietats del formulari
             List<Tasca> llistatprioritats = new List<Tasca>();
             llistatprioritats.Add(new Tasca { Prioritat = "Alta" });
@@ -100,13 +104,30 @@ namespace ProjectoDragDrop.FormulariCrearTasca
 
             // Inicialització d'una llista de responsables per posar al combobox de responsables del formulari
             List<Tasca> llistatreponsables = new List<Tasca>();
+            
             llistatreponsables.Add(new Tasca { Responsable = "Miquel" });
             llistatreponsables.Add(new Tasca { Responsable = "Juanes" });
             llistatreponsables.Add(new Tasca { Responsable = "Sense Asignar" });
 
+
             // Assignació de la llista com a origen de dades per a l'element responsables
             responsables.ItemsSource = llistatreponsables;
 
+
+
+        }
+
+        public void AgregarResponsableALista(string nombreResponsable)
+        {
+            // Agrega el nuevo responsable a la lista de responsables
+            llistatReponsables.Add(new Tasca { Responsable = nombreResponsable });
+
+            // Actualiza el origen de datos del combobox
+            responsables.ItemsSource = null;
+            responsables.ItemsSource = llistatReponsables;
+
+             // Vuelve a cargar la lista de responsables después de agregar uno nuevo
+         CrearLlistats();
         }
 
     }
