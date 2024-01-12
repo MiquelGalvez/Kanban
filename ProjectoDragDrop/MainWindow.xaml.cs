@@ -83,7 +83,6 @@ namespace ProjectoDragDrop
                 tasca.Responsable = creartasca.responsables.Text;
                 tasca.Descripcio = creartasca.DescripcioTasca.Text;
                 tasca.DataFinalitzacio = creartasca.dp1.Text;
-                
 
                 if (tasca.Estat == "TO DO")
                 {

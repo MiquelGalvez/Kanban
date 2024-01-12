@@ -50,21 +50,5 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
                 textBox.Text = string.Empty;
             }
         }
-
-        private void Id_Respon_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            // Verifica si la entrada es un número
-            if (!IsNumeric(e.Text))
-            {
-                // Si no es un número, establece la propiedad Handled en true para evitar que se agregue al TextBox
-                e.Handled = true;
-            }
-        }
-
-        // Función para verificar si una cadena es numérica
-        private bool IsNumeric(string text)
-        {
-            return int.TryParse(text, out _);
-        }
     }
 }
