@@ -26,8 +26,6 @@ namespace ProjectoDragDrop.FormulariCrearTasca
         {
             InitializeComponent();
             CrearLlistats();
-
-
         }
 
         // Gestor d'esdeveniments per al clic al botó Crear

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectoDragDrop.FormulariCrearTasca"
         mc:Ignorable="d"
         Title="CrearTasca" Height="500" Width="800" MinHeight="500" MinWidth="800" MaxHeight="500" MaxWidth="800" ResizeMode="NoResize">
     <Grid>
@@ -20,7 +19,7 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Foreground="White" Grid.Row="0" Text="Crear Tasca" FontSize="34" Background="#114358" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2"></TextBlock>
+        <TextBlock Foreground="White" Grid.Row="0" Text="CREAR TASCA" FontSize="34" Background="#114358" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2"></TextBlock>
         <Border Margin="20,14,14,11" Grid.Column="0" Grid.Row="1" Background="#f1ece7" CornerRadius="10">
             <TextBox GotFocus="TextBox_GotFocus" Name="Titol" Background="Transparent" Text="Títol" Width="300" FontSize="20" VerticalAlignment="Center" TextAlignment="Left" BorderThickness="0"/>
         </Border>
@@ -31,7 +30,8 @@
             </StackPanel>
         </Border>
         <Border Margin="18,10,14,11" Grid.Column="0" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
-            <DatePicker Name="dp1" DisplayDate="2024-01-01" Margin="6,0,6,0" BorderBrush="Transparent" Foreground="Black" VerticalAlignment="Center" />
+            <DatePicker  Name="dp1" DisplayDate="2024-01-01" Margin="6,0,6,0" BorderBrush="Transparent" Foreground="Black" FontSize="20" VerticalAlignment="Center">
+            </DatePicker>
         </Border>
         <Border Margin="17,4,21,4" Grid.Column="1" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
