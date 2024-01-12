@@ -31,7 +31,7 @@
             </StackPanel>
         </Border>
         <Border Margin="18,10,14,11" Grid.Column="0" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
-            <TextBox GotFocus="TextBox_GotFocus" Name="Datafinalització" Background="Transparent" Text="Data Finalització" Width="300" FontSize="20" VerticalAlignment="Center" TextAlignment="Left" BorderThickness="0"/>
+            <DatePicker Name="dp1" DisplayDate="2024-01-01" Margin="6,0,6,0" BorderBrush="Transparent" Foreground="Black" VerticalAlignment="Center" />
         </Border>
         <Border Margin="17,4,21,4" Grid.Column="1" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
