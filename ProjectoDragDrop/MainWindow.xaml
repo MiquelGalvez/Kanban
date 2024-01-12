@@ -57,7 +57,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureEsquerra_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda.png" Width="23" Height="22" />
                                         </Button>
@@ -116,7 +116,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureEsquerra_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda-white.png" Width="23" Height="22" />
                                         </Button>
@@ -174,7 +174,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureEsquerra_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda.png" Width="23" Height="22" />
                                         </Button>
@@ -231,7 +231,7 @@
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                         <Button Margin="0,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="MoureEsquerra_Click">
                                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda-white.png" Width="23" Height="22" />
                                         </Button>
