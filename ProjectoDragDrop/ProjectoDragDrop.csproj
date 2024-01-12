@@ -157,7 +157,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classe\Responsable.cs" />
     <Compile Include="Classe\Tasca.cs" />
+    <Compile Include="FormulariCrearResponsable\AfegirRespon.xaml.cs">
+      <DependentUpon>AfegirRespon.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MesInfoTasca\VeureTasca.xaml.cs">
       <DependentUpon>VeureTasca.xaml</DependentUpon>
     </Compile>
@@ -166,6 +170,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TasquesDataSet.xsd</DependentUpon>
     </Compile>
+    <Page Include="FormulariCrearResponsable\AfegirRespon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="FormulariCrearTasca\CrearTasca.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

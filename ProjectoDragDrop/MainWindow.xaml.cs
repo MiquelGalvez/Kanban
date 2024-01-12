@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Configuration;
 using ProjecteDragDrop;
 using ProjectoDragDrop.MesInfoTasca;
+using ProjectoDragDrop.FormulariCrearResponsable;
 
 namespace ProjectoDragDrop
 {
@@ -119,7 +120,7 @@ namespace ProjectoDragDrop
             creartasca.titol.Content = tasca.Titol;
             creartasca.prioritat.Content = tasca.Prioritat;
             creartasca.responsable.Content = tasca.Responsable;
-            creartasca.descripcio.Content = tasca.Descripcio;
+            creartasca.descripcio.Text = tasca.Descripcio;
             creartasca.datafinalitzacio.Content = tasca.DataFinalitzacio;
             creartasca.estat.Content = tasca.Estat;
             creartasca.datacreacio.Content = tasca.DataCreacio;
@@ -212,5 +213,15 @@ namespace ProjectoDragDrop
             comporvarEstatEs(tasca);
             afeigrEstat(tasca);
         }
+
+        private void AfegirRespon_Click(object sender, RoutedEventArgs e)
+        {
+            // Crear una nueva instancia de AfegirRespon
+            AfegirRespon crearResponsable = new AfegirRespon();
+
+            // Mostrar la ventana utilizando ShowDialog para esperar la entrada del usuario
+            crearResponsable.ShowDialog();
+        }
+
     }
 }
