@@ -16,7 +16,7 @@
             <ColumnDefinition Width="30" />
             <!-- Margen -->
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="30" /> 
             <!-- Margen -->
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="30" />

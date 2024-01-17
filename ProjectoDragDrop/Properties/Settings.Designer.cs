@@ -33,5 +33,16 @@ namespace ProjectoDragDrop.Properties {
                 return ((string)(this["TasquesConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=PC-MIQUEL\\MIQUELSQLSERVER;Initial Catalog=kanban;Persist Security Inf" +
+            "o=True;User ID=sa")]
+        public string kanbanConnectionString {
+            get {
+                return ((string)(this["kanbanConnectionString"]));
+            }
+        }
     }
 }

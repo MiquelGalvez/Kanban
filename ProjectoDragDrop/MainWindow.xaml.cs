@@ -29,6 +29,9 @@ namespace ProjectoDragDrop
         public MainWindow()
         {
             InitializeComponent();
+
+            string laMevaConnexio = ConfigurationManager.ConnectionStrings["Kanban.Properties.Settings.kanbanConnectionString"].ConnectionString;
+
         }
 
         private void CrearTasca_Click(object sender, RoutedEventArgs e)
