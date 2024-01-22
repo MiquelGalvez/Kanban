@@ -1,4 +1,4 @@
-﻿<Window x:Class="ProjectoDragDrop.FormulariCrearTasca.CrearTasca"
+﻿ <Window x:Class="ProjectoDragDrop.FormulariCrearTasca.CrearTasca"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -26,7 +26,7 @@
         <Border Margin="18,8,21,3" Grid.Column="1" Grid.Row="1" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
                 <Label Content="Prioritat" FontSize="16" FontWeight="Bold"></Label>
-                <ComboBox Background="Transparent" FontSize="20" x:Name="prioritats" DisplayMemberPath="Prioritat"/>
+                <ComboBox FontSize="20" x:Name="prioritats"/>
             </StackPanel>
         </Border>
         <Border Margin="18,10,14,11" Grid.Column="0" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
@@ -36,14 +36,14 @@
         <Border Margin="17,4,21,4" Grid.Column="1" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
                 <Label Content="Responsable" FontSize="16" FontWeight="Bold"></Label>
-                <ComboBox Background="Transparent" FontSize="20" x:Name="responsables" DisplayMemberPath="Responsable"/>
+                <ComboBox FontSize="20" x:Name="responsables"/>
             </StackPanel>
         </Border>
         <Border Margin="18,17,22,14" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="3" Background="#f1ece7" CornerRadius="10">
             <TextBox GotFocus="TextBox_GotFocus" Name="DescripcioTasca" Background="Transparent" Text="Descripció" FontSize="20" BorderThickness="0" Margin="20,10" TextWrapping="Wrap"/>
         </Border>
         <Border Margin="320,20,311,11" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Background="#114358" CornerRadius="10">
-            <Button Name="CrearButton" Content="CREAR" Click="CrearButton_Click"
+            <Button Name="CrearButton" Content="CREAR"
             BorderBrush="Transparent" Foreground="White" Background="Transparent"
             Margin="-1,0,0,0"/>
         </Border>

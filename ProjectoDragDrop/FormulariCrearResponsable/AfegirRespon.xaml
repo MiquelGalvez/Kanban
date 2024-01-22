@@ -11,24 +11,39 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Foreground="White"  Block.TextAlignment="Center" Grid.Row="0" Text="AFEGIR RESPONSABLE" FontSize="40" Background="#114358" FontWeight="Bold" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2"></TextBlock>
-        <Border Margin="150,30,150,10" Grid.Column="0" Grid.Row="1" Background="#f1ece7" CornerRadius="10">
-            <TextBox GotFocus="TextBox_GotFocus" Name="Name_new" Background="Transparent" Text="Nom" Width="200" Height="40" FontSize="25" VerticalAlignment="Center" TextAlignment="Center" BorderThickness="0"/>
+        <TextBlock Foreground="White" Grid.Row="0" Text="AFEGIR RESPONSABLE" FontSize="34" Background="#114358" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.ColumnSpan="2"></TextBlock>
+        <Border Margin="20,14,14,11" Grid.Column="0" Grid.Row="1" Background="#f1ece7" CornerRadius="10">
+            <TextBox GotFocus="TextBox_GotFocus" Name="Nom" Background="Transparent" Text="Nom" FontSize="20" VerticalAlignment="Center" TextAlignment="Center" BorderThickness="0" Margin="0,0,0,0"/>
         </Border>
-        <Border Margin="150,30,150,10" Grid.Column="0" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
-            <TextBox GotFocus="TextBox_GotFocus" Name="LastName" Background="Transparent" Text="Cognom" Width="200" Height="40" FontSize="25" VerticalAlignment="Center" TextAlignment="Center" BorderThickness="0"/>
+        <Border Margin="20,14,14,11" Grid.Column="2" Grid.Row="1" Background="#f1ece7" CornerRadius="10">
+            <TextBox GotFocus="TextBox_GotFocus" Name="User" Background="Transparent" Text="User" FontSize="20" VerticalAlignment="Center" TextAlignment="Center" BorderThickness="0" Margin="0,0,0,0"/>
         </Border>
-        <Border Margin="250,30,250,30" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Background="#114358" CornerRadius="10">
-            <Button Name="CrearButton" Content="CREAR" Click="CrearButton_Click"
+        <Border Margin="20,14,14,11" Grid.Column="0" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
+            <TextBox GotFocus="TextBox_GotFocus" Name="Password" Background="Transparent" Text="Password" FontSize="20" VerticalAlignment="Center" TextAlignment="Center" BorderThickness="0" Margin="0,0,0,0"/>
+        </Border>
+        <Border Margin="20,14,14,11" Grid.Column="1" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
+            <TextBox GotFocus="TextBox_GotFocus" Name="Email" Background="Transparent" Text="Email" FontSize="20" VerticalAlignment="Center" TextAlignment="Center" BorderThickness="0" Margin="0,0,0,0"/>
+        </Border>
+        <Border Margin="17,14,21,84" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Background="#f1ece7" CornerRadius="10" Grid.RowSpan="2">
+            <StackPanel>
+                <Label Content="Rol" FontSize="16" FontWeight="Bold"></Label>
+                <ComboBox FontSize="20" x:Name="rols"/>
+            </StackPanel>
+        </Border>
+        <Border Margin="200,20" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="6" Background="#114358" CornerRadius="10">
+            <Button Name="CrearButton" Content="CREAR"
         BorderBrush="Transparent" Foreground="White" Background="Transparent"
-        Margin="-1,0,0,0" FontSize="15"/>
+        Margin="0,0,0,0" Click="CrearUsuari"/>
         </Border>
+
     </Grid>
 </Window>

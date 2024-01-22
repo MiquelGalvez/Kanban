@@ -1,6 +1,9 @@
-﻿using ProjecteDragDrop;
+﻿using ProjectoDragDrop;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,67 +20,58 @@ namespace ProjectoDragDrop.FormulariCrearTasca
 {
     public partial class CrearTasca : Window
     {
-
-        private List<Tasca> llistatReponsables;
-
-        // Propietat interna per emmagatzemar la Tasca creada
-        internal Tasca CreatedTask { get; private set; }
-
-        // Constructor de la classe
-        public CrearTasca()
+        SqlConnection LaMevaConnexioSQL;
+        private MainWindow mainWindow;
+        public CrearTasca(MainWindow mainWindow)
         {
             InitializeComponent();
-            llistatReponsables = new List<Tasca>();
-            CrearLlistats();
+            this.mainWindow = mainWindow;
+            string laMevaConnexio = ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString;
+            LaMevaConnexioSQL = new SqlConnection(laMevaConnexio);
+
+            MostrarRespnsables();
+            MostrarPrioritats();
+            // Agregar el evento Click al botón CrearButton
+            CrearButton.Click += CrearButton_Click;
         }
 
-        // Gestor d'esdeveniments per al clic al botó Crear
-        private void CrearButton_Click(object sender, RoutedEventArgs e)
+        // Funcio per poder afegir els noms dels responsables des de la base de dades al combobox de responsables
+        private void MostrarRespnsables()
         {
-            // Suposant que dp1.Text és la representació de cadena de la data
-            if (DateTime.TryParse(dp1.Text, out DateTime dataFinalitzacio))
+            string consulta = "SELECT nom FROM Usuaris";
+
+            SqlDataAdapter elMeuAdaptador = new SqlDataAdapter(consulta, LaMevaConnexioSQL);
+            using (elMeuAdaptador)
             {
-                // Obtenir la data i hora actual
-                DateTime dataCreacio = DateTime.Now;
 
-                // Permetre que la data de finalització sigui el mateix dia que la data de creació
-                if (dataFinalitzacio >= dataCreacio.Date)
+                DataTable dt = new DataTable();
+                elMeuAdaptador.Fill(dt);
+
+                //POR CADA USER AÑADIR AL COMBOBOX
+                foreach (DataRow row in dt.Rows)
                 {
-                    // Creació d'una nova Tasca amb les dades proporcionades
-                    Tasca newTask = new Tasca
-                    {
-                        Titol = Titol.Text,
-                        Descripcio = DescripcioTasca.Text,
-                        // Format de la data de creació en el format desitjat
-                        DataCreacio = dataCreacio.ToString("dd/MM/yyyy"),
-                        DataFinalitzacio = dataFinalitzacio.ToString("dd/MM/yyyy"),
-                        // Obtenir el responsable seleccionat o posar "Sense Assignar" per defecte
-                        Responsable = (responsables.SelectedItem as Tasca)?.Responsable ?? "Sense Asignar",
-                        // Obtenir la prioritat seleccionada o posar "Baixa" per defecte
-                        Prioritat = (prioritats.SelectedItem as Tasca)?.Prioritat ?? "Baixa",
-                        // Obtenir l'estat per defecte "TO DO"
-                        Estat = "TO DO",
-                    };
-
-                    // Assignació de la Tasca creada a la propietat CreatedTask
-                    CreatedTask = newTask;
-
-                    // Establiment de DialogResult a true per indicar l'èxit
-                    DialogResult = true;
-
-                    // Tancament de la finestra
-                    Close();
-                }
-                else
-                {
-                    // Mostrar missatge d'error si la data de finalització no és igual o posterior a la data de creació
-                    MessageBox.Show("La data de finalització ha de ser igual o posterior a la data de creació");
+                    responsables.Items.Add(row["nom"].ToString());
                 }
             }
-            else
+        }
+
+        // Funcio per poder afegir els noms de les prioritats des de la base de dades al combobox de prioritats
+        private void MostrarPrioritats()
+        {
+            string consulta = "SELECT prioritat FROM Prioritat";
+
+            SqlDataAdapter elMeuAdaptador = new SqlDataAdapter(consulta, LaMevaConnexioSQL);
+            using (elMeuAdaptador)
             {
-                // Gestió del cas en què la cadena no es pugui convertir a DateTime
-                MessageBox.Show("Format de data no vàlid per a DataFinalitzacio");
+
+                DataTable dt = new DataTable();
+                elMeuAdaptador.Fill(dt);
+
+                //POR CADA USER AÑADIR AL COMBOBOX
+                foreach (DataRow row in dt.Rows)
+                {
+                    prioritats.Items.Add(row["prioritat"].ToString());
+                }
             }
         }
 
@@ -90,45 +84,107 @@ namespace ProjectoDragDrop.FormulariCrearTasca
             }
         }
 
-        private void CrearLlistats()
+
+        // Aquesta funcio crea la tasca a la base de dades
+        private void CrearButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                // Obtindre els valors dels controladors
+                string titol = Titol.Text;
+                DateTime datacreacio = DateTime.Now;  // Obtenim la data del dia d'avui
+                DateTime datafinalitzacio = dp1.SelectedDate ?? DateTime.Now; //  Obtenim la data seleccionada y si no seleccionem res obtenim la data del dia d'avui
+                string descripcio = DescripcioTasca.Text;
 
-            // Inicialització d'una llista de prioritats per posar al combobox de proprietats del formulari
-            List<Tasca> llistatprioritats = new List<Tasca>();
-            llistatprioritats.Add(new Tasca { Prioritat = "Alta" });
-            llistatprioritats.Add(new Tasca { Prioritat = "Mitja" });
-            llistatprioritats.Add(new Tasca { Prioritat = "Baixa" });
+                // Obtenir l'id del responsable selecionat
+                string responsableNombre = responsables.SelectedItem?.ToString();
+                int idResponsable = ObtenerIdResponsable(responsableNombre);
 
-            // Assignació de la llista com a origen de dades per a l'element prioritats
-            prioritats.ItemsSource = llistatprioritats;
+                // Obtenir l'id de la prioritat selecionat
+                string prioritatNombre = prioritats.SelectedItem?.ToString();
+                int idPrioritat = ObtenerIdPrioritat(prioritatNombre);
 
-            // Inicialització d'una llista de responsables per posar al combobox de responsables del formulari
-            List<Tasca> llistatreponsables = new List<Tasca>();
-            
-            llistatreponsables.Add(new Tasca { Responsable = "Miquel" });
-            llistatreponsables.Add(new Tasca { Responsable = "Juanes" });
-            llistatreponsables.Add(new Tasca { Responsable = "Sense Asignar" });
+                // Obtenir l'id del estat per defecte, no el podem seleccionar sempre ens posara sempre l'estat com a TO DO
+                int idEstat = ObtenerIdEstat("TO DO");
 
+                // Inserir aquesta tasca a la Taula de la base de dades
+                string inserirTascaQuery = "INSERT INTO Tasca (titol, descricpio, datacreacio, datafinalitzacio, id_responsable, id_prioritat, id_estat) " +
+                                           "VALUES (@Titol, @Descripcio, @DataCreacio, @DataFinalitzacio, @IdResponsable, @IdPrioritat, @IdEstat)";
 
-            // Assignació de la llista com a origen de dades per a l'element responsables
-            responsables.ItemsSource = llistatreponsables;
+                using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString))
+                {
+                    conn.Open();
 
+                    using (SqlCommand cmd = new SqlCommand(inserirTascaQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Titol", titol);
+                        cmd.Parameters.AddWithValue("@Descripcio", descripcio);
+                        cmd.Parameters.AddWithValue("@DataCreacio", datacreacio);
+                        cmd.Parameters.AddWithValue("@DataFinalitzacio", datafinalitzacio);
+                        cmd.Parameters.AddWithValue("@IdResponsable", idResponsable);
+                        cmd.Parameters.AddWithValue("@IdPrioritat", idPrioritat);
+                        cmd.Parameters.AddWithValue("@IdEstat", idEstat);
 
+                        cmd.ExecuteNonQuery();
+                    }
+                }
 
+                mainWindow.ActulitzarTasquesPerEstat();
+                MessageBox.Show("Tasca creada exitosamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al crear la tasca: {ex.Message}");
+            }
         }
 
-        public void AgregarResponsableALista(string nombreResponsable)
+
+        // Funció utilitzada per obtenir l'id del responsable
+        private int ObtenerIdResponsable(string responsableNombre)
         {
-            // Agrega el nuevo responsable a la lista de responsables
-            llistatReponsables.Add(new Tasca { Responsable = nombreResponsable });
+            string consulta = "SELECT Id FROM Usuaris WHERE nom = @Nom";
 
-            // Actualiza el origen de datos del combobox
-            responsables.ItemsSource = null;
-            responsables.ItemsSource = llistatReponsables;
-
-             // Vuelve a cargar la lista de responsables después de agregar uno nuevo
-         CrearLlistats();
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Nom", responsableNombre);
+                    conn.Open();
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
         }
 
+        // Funció utilitzada per obtenir l'id de la prioritat
+        private int ObtenerIdPrioritat(string prioritatNombre)
+        {
+            string consulta = "SELECT Id FROM Prioritat WHERE prioritat = @Prioritat";
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Prioritat", prioritatNombre);
+                    conn.Open();
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
+
+        // Funció utilitzada per obtenir l'id del estat
+        private int ObtenerIdEstat(string estatNombre)
+        {
+            string consulta = "SELECT Id FROM Estat WHERE estat = @Estat";
+
+            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(consulta, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Estat", estatNombre);
+                    conn.Open();
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
     }
 }
