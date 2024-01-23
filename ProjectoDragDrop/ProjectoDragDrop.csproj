@@ -262,5 +262,11 @@
   <ItemGroup>
     <Resource Include="imagenes\anadir.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\flecha-correcta-white.png" />
+    <Resource Include="imagenes\flecha-correcta.png" />
+    <Resource Include="imagenes\flecha-izqueirda-white.png" />
+    <Resource Include="imagenes\flecha-izqueirda.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
