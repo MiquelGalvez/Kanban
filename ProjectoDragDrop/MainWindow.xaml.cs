@@ -1,4 +1,5 @@
 ﻿using ProjectoDragDrop.FormulariCrearTasca;
+using ProjectoDragDrop.FormulariEditarTasca;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -74,11 +75,11 @@ namespace ProjectoDragDrop
             // Get the selected task from the ListBox
             if (sender is Button button && button.DataContext is DataRowView selectedTask)
             {
-                // Logica per modificar la informació de la tasca
-
-                // After editing, refresh the task list
-                ActulitzarTasquesPerEstat();
+                // Open the VeureTasca window and pass the selected task information
+                EditarTasca veureTascaWindow = new EditarTasca(selectedTask);
+                veureTascaWindow.ShowDialog();
             }
+            ActulitzarTasquesPerEstat();
         }
 
         // Funció que quan es crida, crida a la funcio que elimina la tasca de la base de dades
@@ -133,10 +134,10 @@ namespace ProjectoDragDrop
         // Funcío que ens permet veure tota l'informació d'una tasca en especific
         private void VeureInformacióTasca_Click(object sender, RoutedEventArgs e)
         {
-            // Get the selected task from the ListBox
+            // Agafa la tasca seleccionada del listbox
             if (sender is Button button && button.DataContext is DataRowView selectedTask)
             {
-                // Open the VeureTasca window and pass the selected task information
+                // Obre la finestra VeureTasca i li passa la informació de la tasca seleccionada
                 VeureTasca veureTascaWindow = new VeureTasca(selectedTask);
                 veureTascaWindow.ShowDialog();
             }
@@ -169,5 +170,116 @@ namespace ProjectoDragDrop
             }
         }
 
+        // Funcio que el que fa es cambiar l'estat de la tasca per poder mourela en dependencia a la columna en la que esta actualment
+        private void MoureDreta_Click(object sender, RoutedEventArgs e)
+        {
+            // Obté la tasca seleccionada de la ListBox
+            if (sender is Button button && button.DataContext is DataRowView selectedTask)
+            {
+                // Pots accedir a les propietats de la tasca com selectedTask["Id"], selectedTask["id_estat"], etc.
+                int taskId = Convert.ToInt32(selectedTask["Id"]);
+                int currentEstatId = Convert.ToInt32(selectedTask["id_estat"]);
+
+                // Defineix el nou id_estat basant-te en la lògica del teu negoci
+                int newEstatId = DeterminarNouEstat(currentEstatId);
+
+                // Actualitza el id_estat de la tasca a la base de dades
+                ActualitzarTascaEstat(taskId, newEstatId);
+
+                // Després d'actualitzar, refresca la llista de tasques
+                ActulitzarTasquesPerEstat();
+            }
+        }
+
+        // Funcio que el que fa es cambiar l'estat de la tasca per poder mourela en dependencia a la columna en la que esta actualment
+        private void MoureEsquerra_Click(object sender, RoutedEventArgs e)
+        {
+            // Obté la tasca seleccionada de la ListBox
+            if (sender is Button button && button.DataContext is DataRowView selectedTask)
+            {
+                // Pots accedir a les propietats de la tasca com selectedTask["Id"], selectedTask["id_estat"], etc.
+                int taskId = Convert.ToInt32(selectedTask["Id"]);
+                int currentEstatId = Convert.ToInt32(selectedTask["id_estat"]);
+
+                // Defineix el nou id_estat basant-te en la lògica del teu negoci
+                int newEstatId = DeterminarEstatAnterior(currentEstatId);
+
+                // Actualitza el id_estat de la tasca a la base de dades
+                ActualitzarTascaEstat(taskId, newEstatId);
+
+                // Després d'actualitzar, refresca la llista de tasques
+                ActulitzarTasquesPerEstat();
+            }
+        }
+
+        // Aquesta funcio el que fa es retoirna el Id del nou estat en dependencia al que tenia abans per poder moure cap a l'esquerra una tasca
+        private int DeterminarEstatAnterior(int currentEstatId)
+        {
+            // Lògica de substitució del estat cap enrere
+            switch (currentEstatId)
+            {
+                case 2: // DOING
+                    return 1; // Suposant que 1 és el id_estat per "TO DO"
+                case 3: // IN REVIEW
+                    return 2; // Suposant que 2 és el id_estat per "DOING"
+                case 4: // COMPLETED
+                    return 3; // Suposant que 3 és el id_estat per "IN REVIEW"
+
+                default:
+                    return currentEstatId; // No hi ha canvis si no es gestiona
+            }
+        }
+
+        // Aquesta funcio el que fa es retoirna el Id del nou estat en dependencia al que tenia abans per poder moure cap a la dreta una tasca
+        private int DeterminarNouEstat(int currentEstatId)
+        {
+
+            // Lògica de substitució del estat
+            switch (currentEstatId)
+            {
+                case 1: // TO DO
+                    return 2; // Suposant que 2 és el id_estat per "DOING"
+                case 2: // DOING
+                    return 3; // Suposant que 3 és el id_estat per "IN REVIEW"
+                case 3: // IN REVIEW
+                    return 4; // Suposant que 4 és el id_estat per "COMPLETED"
+
+                default:
+                    return currentEstatId; // No hi ha canvis si no es gestiona
+            }
+        }
+
+        // Aquesta funcio el que fa es canviar el estat de la tasca a el nou estat en dependencia del qeu tenia abans
+        private void ActualitzarTascaEstat(int taskId, int newEstatId)
+        {
+            try
+            {
+                // Obre la connexió
+                LaMevaConnexioSQL.Open();
+
+                // Defineix la consulta SQL d'ACTUALITZACIÓ
+                string updateQuery = "UPDATE tasca SET id_estat = @NewEstatId WHERE Id = @TaskId";
+
+                // Crea un SqlCommand amb paràmetres
+                using (SqlCommand cmd = new SqlCommand(updateQuery, LaMevaConnexioSQL))
+                {
+                    cmd.Parameters.AddWithValue("@TaskId", taskId);
+                    cmd.Parameters.AddWithValue("@NewEstatId", newEstatId);
+
+                    // Executa la consulta d'ACTUALITZACIÓ
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Gestiona l'excepció (per exemple, registra o mostra un missatge d'error)
+                MessageBox.Show($"Error actualitzant l'estat de la tasca: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                // Tanca la connexió
+                LaMevaConnexioSQL.Close();
+            }
+        }
     }
 }

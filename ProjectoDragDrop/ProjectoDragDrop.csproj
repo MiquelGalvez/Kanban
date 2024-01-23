@@ -164,6 +164,9 @@
     <Compile Include="FormulariCrearResponsable\AfegirRespon.xaml.cs">
       <DependentUpon>AfegirRespon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FormulariEditarTasca\EditarTasca.xaml.cs">
+      <DependentUpon>EditarTasca.xaml</DependentUpon>
+    </Compile>
     <Compile Include="kanbanDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -182,6 +185,10 @@
     <Page Include="FormulariCrearResponsable\AfegirRespon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FormulariEditarTasca\EditarTasca.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="FormulariCrearTasca\CrearTasca.xaml">
       <SubType>Designer</SubType>
