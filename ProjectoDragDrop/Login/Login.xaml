@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Login" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Foreground="Black" Margin="0,20,0,10"/>
+        <TextBlock Text="Login to Kanban" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Foreground="Black" Margin="0,20,0,10"/>
 
         <StackPanel Grid.Row="1" Margin="30">
             <TextBox x:Name="UsernameTextBox" GotFocus="TextBox_GotFocus" Text="Nom d'Usuari" Height="40" HorizontalAlignment="Stretch" Margin="0,0,0,15" Background="#114358" Foreground="White"/>

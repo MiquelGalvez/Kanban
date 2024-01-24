@@ -353,7 +353,7 @@
         </Border>
 
         <!--Boto Crear Tasca-->
-        <Border Margin="10,10,10,10" Grid.Column="0" Grid.Row="2" Background="#114358" CornerRadius="10">
+        <Border Margin="43,11,47,14" Grid.Column="0" Grid.Row="2" Background="#114358" CornerRadius="10">
             <!-- Contenido -->
             <Button Content="AFEGIR TASCA" FontWeight="Bold" BorderBrush="Transparent" Foreground="White" Padding="4" Background="Transparent" Click="AfegirTasca_Click"/>
         </Border>
