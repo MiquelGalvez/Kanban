@@ -38,6 +38,10 @@ namespace ProjectoDragDrop.Login
             {
                 textBox.Text = string.Empty;
             }
+            if (sender is PasswordBox password)
+            {
+                password.Password = string.Empty;
+            }
         }
 
         // Funcio que comprova si la infromació de inici de sessió es correcte i si es aixi mostra la finestra del kanban
