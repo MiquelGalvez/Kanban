@@ -55,18 +55,27 @@ namespace ProjectoDragDrop.EliminarUsuari
                         // User with correct credentials exists, proceed with deletion
                         string deleteQuery = $"DELETE FROM Usuaris WHERE usuari = '{username}' AND password = '{password}'";
 
-                        using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, LaMevaConnexioSQL))
-                        {
-                            int rowsAffected = deleteCommand.ExecuteNonQuery();
+                        MessageBoxResult result = MessageBox.Show("¿Quieres confirmar?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                            if (rowsAffected > 0)
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, LaMevaConnexioSQL))
                             {
-                                MessageBox.Show("Usuari eliminat correctament.");
+                                int rowsAffected = deleteCommand.ExecuteNonQuery();
+
+                                if (rowsAffected > 0)
+                                {
+                                    MessageBox.Show("Usuari eliminat correctament.");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error al eliminar l'usuari.");
+                                }
                             }
-                            else
-                            {
-                                MessageBox.Show("Error al eliminar l'usuari.");
-                            }
+                        }
+                        else if (result == MessageBoxResult.No)
+                        {
+                            MessageBox.Show("Has decidit no eliminar el usuari");
                         }
                     }
                     else

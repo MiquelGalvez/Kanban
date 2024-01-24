@@ -1,5 +1,6 @@
 ﻿using ProjectoDragDrop;
 using ProjectoDragDrop.FormulariCrearTasca;
+using ProjectoDragDrop.Login;
 using System;
 using System.Data.SqlClient;
 using System.Data;
@@ -14,6 +15,7 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
     {
         SqlConnection LaMevaConnexioSQL;
         private bool openedFromLogin;
+        private string nomrol;
         public AfegirRespon(bool openedFromLogin = false)
         {
 
@@ -71,8 +73,21 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
                 string usuari = User.Text; 
                 string pwd = Password.Text;
 
-                // Obtener identificador del responsable seleccionado
-                string nomrol = rols.SelectedItem?.ToString() ?? "User";
+                // Si hi ha algun usuari a la base de dades els usuaris nous que es registrin tindran per defecte el Rol de User, pero si no hi ha cap usuari encara a la base de dades el primer usuari qeu es registri sera admin
+                ProjectoDragDrop.Login.Login loginInstance = new ProjectoDragDrop.Login.Login();
+                int countusers = loginInstance.ComprobarUsers();
+
+                if (countusers <= 0)
+                {
+                    nomrol = "Admin";
+                }
+                else {
+                    // Obtener identificador del responsable seleccionado
+                    nomrol = rols.SelectedItem?.ToString() ?? "User";
+                }
+
+                
+                
                 int idRol = ObtenirIdRol(nomrol);
 
 

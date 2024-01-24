@@ -84,6 +84,35 @@ namespace ProjectoDragDrop.Login
             }
         }
 
+        // Funcio qeu el que fa es contar si hi ha algun usuari a la base de dades
+        public int ComprobarUsers()
+        {
+            try
+            {
+                // Query to check if the user with provided credentials exists
+                string selectQuery = $"SELECT COUNT(*) FROM Usuaris";
+
+                using (SqlCommand selectCommand = new SqlCommand(selectQuery, LaMevaConnexioSQL))
+                {
+                    LaMevaConnexioSQL.Open();
+                    int userCount = (int)selectCommand.ExecuteScalar();
+
+                    return userCount; // Return the value in case of success
+                }
+            }
+            catch
+            {
+                MessageBox.Show("No s'ha pogut obtenir el count");
+                // Handle the exception (You might want to return a default value or throw an exception here)
+            }
+            finally
+            {
+                LaMevaConnexioSQL.Close();
+            }
+
+            // You might need to provide a default return value or handle this case
+            return -1; // For example, return -1 if the count couldn't be obtained
+        }
 
         // Funcio que ens permet crea un nou usuari si no hens hem registrat abans a l'aplicació
         private void registrarUsuari_Click(object sender, RoutedEventArgs e)

@@ -10,6 +10,8 @@ using System.Windows.Controls;
 using System.Data;
 using ProjectoDragDrop.MesInfoTasca;
 using ProjectoDragDrop.FormulariCrearResponsable;
+using static ProjectoDragDrop.kanbanDataSet;
+using System.Windows.Media;
 
 namespace ProjectoDragDrop
 {
@@ -17,6 +19,7 @@ namespace ProjectoDragDrop
     {
         SqlConnection LaMevaConnexioSQL;
         private string usauriLogin;
+        private int idRol;
 
         public MainWindow(string usauriLogin)
         {
@@ -24,12 +27,16 @@ namespace ProjectoDragDrop
             string laMevaConnexio = ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString;
             LaMevaConnexioSQL = new SqlConnection(laMevaConnexio);
             this.usauriLogin = usauriLogin;
-
             usuari.Content = usauriLogin;
+
+            idRol = ObtenirIdRol(usauriLogin);
+
+            Loaded += MainWindow_Loaded;
+            
+
 
             // Funció que es crida al principi per poder mostrar les tasques ja guardades en la base de dades
             ActulitzarTasquesPerEstat();
-            this.usauriLogin = usauriLogin;
         }
 
         // Mostrar les asques per estat en la seva columna especifica
@@ -299,5 +306,75 @@ namespace ProjectoDragDrop
             // Show the login window
             loginwindow.Show();
         }
+
+
+        // Función para obtener el ID del rol según el nombre de usuario, per poder crear les restricciond segons el rol
+        private int ObtenirIdRol(string nomusuari)
+        {
+            try
+            {
+                // Obre la connexió
+                LaMevaConnexioSQL.Open();
+
+                // Defineix la consulta SQL per obtenir l'Id del Rol
+                string consulta = "SELECT id_rol FROM Usuaris WHERE usuari = @NombreUsuario";
+
+                // Crea un SqlCommand amb paràmetres
+                using (SqlCommand cmd = new SqlCommand(consulta, LaMevaConnexioSQL))
+                {
+                    // Afegeix el paràmetre amb el valor del nom d'usuari
+                    cmd.Parameters.AddWithValue("@NombreUsuario", nomusuari);
+
+                    // Executa la consulta i obté el resultat
+                    object resultat = cmd.ExecuteScalar();
+
+                    if (resultat != null)
+                    {
+                        // Converteix el resultat a enter (assumint que l'Id del Rol és de tipus enter)
+                        return Convert.ToInt32(resultat);
+                    }
+                    else
+                    {
+                        // Usuari no trobat o Id del Rol és NULL
+                        return -1; // Pots usar un altre valor per indicar un estat no vàlid
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Gestionar l'excepció (per exemple, registrar-la o mostrar un missatge d'error)
+                MessageBox.Show($"Error en obtenir l'Id del Rol: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return -1; // Pots usar un altre valor per indicar un estat no vàlid
+            }
+            finally
+            {
+                // Tancar la connexió
+                LaMevaConnexioSQL.Close();
+            }
+        }
+
+        // Permissos que es posaran a cada usuari en dependencia al seu rol
+        private void Permissos(int idRol)
+        {
+            // Segons el ID de cada rol que te un usuari al fer login ocultem uns botons o uns altres
+            if (idRol == 4)
+            {
+                afegirResponsable.Visibility = Visibility.Collapsed;
+                eliminarResponsable.Visibility = Visibility.Collapsed;
+                editarResponsable.Visibility = Visibility.Collapsed;
+            }
+            else if (idRol == 2)
+            {
+                eliminarResponsable.Visibility = Visibility.Collapsed;
+            }
+            else if (idRol == 1) { }
+        }
+        // Funcio per cridar a la funcio Permissos despres de que el main window h
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Llama a la función Permissos después de que la ventana se ha cargado completamente
+            Permissos(idRol);
+        }
+
     }
 }

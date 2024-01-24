@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="KANBAN" Height="750" Width="1300" VerticalContentAlignment="Stretch" Background="White" MinWidth="1080" MinHeight="700" WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <DataTemplate x:Key="TemplateBlack">
+        <DataTemplate x:Name="TemplateBlack" x:Key="TemplateBlack">
             <Border CornerRadius="10" BorderBrush="Black">
                 <StackPanel Margin="7">
                     <TextBlock  FontSize="16" FontWeight="Bold">
@@ -47,7 +47,7 @@
                             <Image Source="/ProjectoDragDrop;component/imagenes/lapiz.png" Width="23" Height="22" />
                         </Button>
 
-                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
+                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" x:Name="eliminarTascaBlack" Click="EliminarTasca_Click">
                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminar.png" Width="23" Height="22" />
                         </Button>
                         <Button Margin="0,0,10,0" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureInformacióTasca_Click">
@@ -89,13 +89,13 @@
                         <Button Click="MoureEsquerra_Click" Margin="10,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda-white.png" Width="23" Height="22" />
                         </Button>
-                        <Button Click="MoureDreta_Click" Margin="0,0,90,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
+                        <Button Click="MoureDreta_Click" x:Name="MoureDreta" Margin="0,0,90,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-correcta-white.png" Width="23" Height="22" />
                         </Button>
                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click">
                             <Image Source="/ProjectoDragDrop;component/imagenes/lapizwhite.png" Width="23" Height="22" />
                         </Button>
-                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EliminarTasca_Click">
+                        <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" x:Name="eliminarTascaWhite" Click="EliminarTasca_Click">
                             <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22" />
                         </Button>
                         <Button Margin="0,0,10,0" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureInformacióTasca_Click">
@@ -331,18 +331,18 @@
                             <Label Margin="5,0,0,0" Foreground="White" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Responsables" FontSize="16" FontWeight="Bold" Height="34" Width="125"/>
                             <!-- Contenido -->
                             <Border  CornerRadius="10" Height="26">
-                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="AfegirResponsable_Click" Height="27">
+                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="AfegirResponsable_Click" x:Name="afegirResponsable" Height="27">
                                     <Image Source="/ProjectoDragDrop;component/imagenes/anadir.png" Width="23" Height="23"/>
                                 </Button>
                             </Border>
                             <Border  CornerRadius="10" Height="26">
-                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="EliminarUsuari_Click" Height="26">
+                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="EliminarUsuari_Click" x:Name="eliminarResponsable" Height="26">
                                     <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="23"/>
                                 </Button>
                             </Border>
                             <!-- Contenido -->
                             <Border CornerRadius="10" Height="26">
-                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent">
+                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" x:Name="editarResponsable" Background="Transparent">
                                     <Image Source="/ProjectoDragDrop;component/imagenes/lapizwhite.png" Width="23" Height="23"/>
                                 </Button>
                             </Border>
