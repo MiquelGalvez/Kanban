@@ -32,6 +32,8 @@ namespace ProjectoDragDrop.EliminarUsuari
             }
         }
 
+
+        // Funcio que el que fa es eliminar de la base de dades un usuari, comprovant abasn amb la base de dades si l'usuari i la ocntrasenya son correctes
         private void EliminarUsuari_Click(object sender, RoutedEventArgs e)
         {
             try

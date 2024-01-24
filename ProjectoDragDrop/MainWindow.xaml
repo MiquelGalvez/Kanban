@@ -326,13 +326,13 @@
                                 </Button>
                             </Border>
                             <Border  CornerRadius="10" Height="26">
-                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="AfegirResponsable_Click" Height="26">
+                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="EliminarUsuari_Click" Height="26">
                                     <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="23"/>
                                 </Button>
                             </Border>
                             <!-- Contenido -->
                             <Border CornerRadius="10" Height="26">
-                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="EliminarUsuari_Click">
+                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent">
                                     <Image Source="/ProjectoDragDrop;component/imagenes/lapizwhite.png" Width="23" Height="23"/>
                                 </Button>
                             </Border>
