@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ProjectoDragDrop"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         mc:Ignorable="d"
-        Title="KANBAN" Height="750" Width="1300" VerticalContentAlignment="Stretch" Background="White" MinWidth="1080" MinHeight="700">
+        Title="KANBAN" Height="750" Width="1300" VerticalContentAlignment="Stretch" Background="White" MinWidth="1080" MinHeight="700" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate x:Key="TemplateBlack">
             <Border CornerRadius="10" BorderBrush="Black">
@@ -121,11 +121,21 @@
             <ColumnDefinition Width="30" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="618*"/>
+            <RowDefinition Height="67.04"></RowDefinition>
         </Grid.RowDefinitions>
+        <Border CornerRadius="10" BorderThickness="2" BorderBrush="#114358" Grid.Column="6" Grid.Row="0" Margin="81,10,72,6">
+            <StackPanel Orientation="Horizontal" Margin="3,0,-1,0">
+                <Label Content="Usuari: " Margin="0,0,1,0" Width="46" Foreground="Black"/>
+                <Label x:Name="usuari" Width="88" Foreground="Black"/>
+            </StackPanel>
+        </Border>
+        <Button Click="sortir_Click" x:Name="sortir" Grid.Column="6" Grid.Row="0" Margin="230,11,32,9" Background="Transparent" BorderBrush="Transparent">
+            <Image Source="/ProjectoDragDrop;component/imagenes/cerrar-sesion.png" Width="23" Height="23"/>
+        </Button>
         <!-- Primera columna -->
-        <Border CornerRadius="10" Grid.Column="0" Grid.Row="0" BorderBrush="#f1ece7" BorderThickness="1" Margin="30,30,0,30">
+        <Border CornerRadius="10" Grid.Column="0" Grid.Row="1" BorderBrush="#f1ece7" BorderThickness="1" Margin="30,10,0,30">
             <!-- Contenido -->
             <StackPanel>
                 <TextBlock x:Name="COLUMNA1" Text="TO DO" TextAlignment="Center" FontWeight="Bold" Foreground="Black" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#f1ece7"/>
@@ -168,9 +178,9 @@
             </StackPanel>
         </Border>
         <!-- segunda columna (margen) -->
-        <Border Grid.Column="1" BorderBrush="Transparent" BorderThickness="0" Margin="5,1,5,371" Grid.Row="1"/>
+        <Border Grid.Column="1" BorderBrush="Transparent" BorderThickness="0" Margin="5,1,5,320" Grid.Row="1"/>
         <!-- tercera columna -->
-        <Border CornerRadius="10" Grid.Column="2" Grid.Row="0"  BorderBrush="#114358" BorderThickness="1" Margin="10,30,10,30">
+        <Border CornerRadius="10" Grid.Column="2" Grid.Row="1"  BorderBrush="#114358" BorderThickness="1" Margin="10,10,10,30">
             <!-- Contenido -->
             <StackPanel>
                 <TextBlock Text="DOING" TextAlignment="Center" FontWeight="Bold"  Foreground="White" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#114358"/>
@@ -216,7 +226,7 @@
         <!-- 4 Columna (margen) -->
         <Border Grid.Column="3" BorderBrush="Transparent" BorderThickness="0" Margin="10,10,10,10"/>
         <!-- 5 Columna (margen) -->
-        <Border CornerRadius="10" Grid.Column="4" Grid.Row="0"  BorderBrush="#f2aa1f" BorderThickness="1" Margin="10,30,10,30">
+        <Border CornerRadius="10" Grid.Column="4" Grid.Row="1"  BorderBrush="#f2aa1f" BorderThickness="1" Margin="10,10,10,30">
             <!--Contenido-->
             <StackPanel>
                 <TextBlock Text="IN REVIEW" TextAlignment="Center" FontWeight="Bold"  Foreground="Black" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#f2aa1f"/>
@@ -260,11 +270,11 @@
         </Border>
         <Border Grid.Column="5" BorderBrush="Transparent" BorderThickness="0" Margin="10,10,10,10"/>
         <!-- 5 Columna (margen) -->
-        <Border CornerRadius="10" Grid.Column="6" Grid.Row="0" BorderBrush="#16C172" BorderThickness="1" Margin="10,30,10,30">
+        <Border CornerRadius="10" Grid.Column="6" Grid.Row="1" BorderBrush="#16C172" BorderThickness="1" Margin="10,10,10,30">
             <!--Contenido-->
             <StackPanel>
                 <TextBlock Text="COMPLETED" TextAlignment="Center" FontWeight="Bold"  Foreground="White" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#16C172"/>
-                <ListBox ItemTemplate="{StaticResource TemplateWhite}" Name="llistatcompleted" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" HorizontalContentAlignment="Stretch" Height="540">
+                <ListBox ItemTemplate="{StaticResource TemplateWhite}" Name="llistatcompleted" ScrollViewer.VerticalScrollBarVisibility="Hidden" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" HorizontalContentAlignment="Stretch" Height="540" d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="Background" Value="#16C172"/>
@@ -303,8 +313,8 @@
                 </ListBox>
             </StackPanel>
         </Border>
-        <Border CornerRadius="10" Grid.Column="6" Grid.Row="1">
-            <StackPanel Height="101" VerticalAlignment="Top" Margin="-16,-3,0,0">
+        <Border CornerRadius="10" Grid.Column="6" Grid.Row="2" Margin="0,12,0,0">
+            <StackPanel Margin="-16,-34,0,1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -343,7 +353,7 @@
         </Border>
 
         <!--Boto Crear Tasca-->
-        <Border Margin="30" Grid.Column="0" Grid.Row="1" Background="#114358" CornerRadius="10">
+        <Border Margin="10,10,10,10" Grid.Column="0" Grid.Row="2" Background="#114358" CornerRadius="10">
             <!-- Contenido -->
             <Button Content="AFEGIR TASCA" FontWeight="Bold" BorderBrush="Transparent" Foreground="White" Padding="4" Background="Transparent" Click="AfegirTasca_Click"/>
         </Border>

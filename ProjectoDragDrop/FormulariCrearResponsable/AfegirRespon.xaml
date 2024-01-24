@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ProjectoDragDrop.FormulariCrearResponsable"
       mc:Ignorable="d" 
       Height="400" Width="600"
-      Title="AfegirRespon">
+      Title="AfegirRespon" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.ColumnDefinitions>

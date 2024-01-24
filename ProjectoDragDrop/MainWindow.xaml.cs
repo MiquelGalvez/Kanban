@@ -16,15 +16,20 @@ namespace ProjectoDragDrop
     public partial class MainWindow : Window
     {
         SqlConnection LaMevaConnexioSQL;
+        private string usauriLogin;
 
-        public MainWindow()
+        public MainWindow(string usauriLogin)
         {
             InitializeComponent();
             string laMevaConnexio = ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString;
             LaMevaConnexioSQL = new SqlConnection(laMevaConnexio);
+            this.usauriLogin = usauriLogin;
+
+            usuari.Content = usauriLogin;
 
             // Funció que es crida al principi per poder mostrar les tasques ja guardades en la base de dades
             ActulitzarTasquesPerEstat();
+            this.usauriLogin = usauriLogin;
         }
 
         // Mostrar les asques per estat en la seva columna especifica
@@ -280,6 +285,19 @@ namespace ProjectoDragDrop
                 // Tanca la connexió
                 LaMevaConnexioSQL.Close();
             }
+        }
+
+        // Aquesta funcio el que fa es que quan nosaltres fem click a tencar sessio obra una nova finestra de login i tenca la de MainWindow
+        private void sortir_Click(object sender, RoutedEventArgs e)
+        {
+            // Create a new instance of the login window
+            ProjectoDragDrop.Login.Login loginwindow = new ProjectoDragDrop.Login.Login();
+
+            // Close the current MainWindow
+            this.Close();
+
+            // Show the login window
+            loginwindow.Show();
         }
     }
 }

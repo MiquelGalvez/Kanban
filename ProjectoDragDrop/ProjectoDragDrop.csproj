@@ -172,6 +172,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>kanbanDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Login\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -191,6 +194,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FormulariCrearTasca\CrearTasca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -274,6 +281,9 @@
     <Resource Include="imagenes\flecha-correcta.png" />
     <Resource Include="imagenes\flecha-izqueirda-white.png" />
     <Resource Include="imagenes\flecha-izqueirda.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\cerrar-sesion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,13 +13,18 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
     public partial class AfegirRespon : Window
     {
         SqlConnection LaMevaConnexioSQL;
-
-        public AfegirRespon()
+        private bool openedFromLogin;
+        public AfegirRespon(bool openedFromLogin = false)
         {
+
             InitializeComponent();
+            this.openedFromLogin = openedFromLogin;
             string laMevaConnexio = ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString;
             LaMevaConnexioSQL = new SqlConnection(laMevaConnexio);
-
+            if (openedFromLogin)
+            {
+                rols.IsEnabled = false;
+            }
             // Quan s'executa la finestra es crida a aquesta funció
             MostrarRols();
         }
@@ -67,7 +72,7 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
                 string pwd = Password.Text;
 
                 // Obtener identificador del responsable seleccionado
-                string nomrol = rols.SelectedItem?.ToString();
+                string nomrol = rols.SelectedItem?.ToString() ?? "User";
                 int idRol = ObtenirIdRol(nomrol);
 
 
