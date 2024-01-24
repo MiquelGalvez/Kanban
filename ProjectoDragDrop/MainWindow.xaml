@@ -129,7 +129,7 @@
             <!-- Contenido -->
             <StackPanel>
                 <TextBlock x:Name="COLUMNA1" Text="TO DO" TextAlignment="Center" FontWeight="Bold" Foreground="Black" Padding="4" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Top" Background="#f1ece7"/>
-                <ListBox ItemTemplate="{StaticResource TemplateBlack}" x:Name="llistattodo" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalContentAlignment="Stretch" Height="540">
+                <ListBox ItemTemplate="{StaticResource TemplateBlack}" x:Name="llistattodo" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Hidden" Margin="0,0,0,0" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalContentAlignment="Stretch" Height="540">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="Background" Value="#f1ece7"/>
