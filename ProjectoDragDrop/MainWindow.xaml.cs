@@ -316,7 +316,6 @@ namespace ProjectoDragDrop
             loginwindow.Show();
         }
 
-
         // Función para obtener el ID del rol según el nombre de usuario, per poder crear les restricciond segons el rol
         private int ObtenirIdRol(string nomusuari)
         {
@@ -366,17 +365,19 @@ namespace ProjectoDragDrop
         private void Permissos(int idRol)
         {
             // Segons el ID de cada rol que te un usuari al fer login ocultem uns botons o uns altres
-            if (idRol == 4)
+            switch (idRol)
             {
-                afegirResponsable.Visibility = Visibility.Collapsed;
-                eliminarResponsable.Visibility = Visibility.Collapsed;
-                editarResponsable.Visibility = Visibility.Collapsed;
+                case 1:
+                    break;
+                case 2:
+                    eliminarResponsable.Visibility = Visibility.Collapsed;
+                    break;
+                case 4:
+                    afegirResponsable.Visibility = Visibility.Collapsed;
+                    eliminarResponsable.Visibility = Visibility.Collapsed;
+                    editarResponsable.Visibility = Visibility.Collapsed;
+                    break;
             }
-            else if (idRol == 2)
-            {
-                eliminarResponsable.Visibility = Visibility.Collapsed;
-            }
-            else if (idRol == 1) { }
         }
 
         // Funcio per cridar a la funcio Permissos despres de que el main window hagi estat inicialitzat
