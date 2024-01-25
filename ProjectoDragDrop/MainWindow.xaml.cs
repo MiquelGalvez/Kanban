@@ -122,13 +122,22 @@ namespace ProjectoDragDrop
                 // Define the DELETE SQL query
                 string deleteQuery = "DELETE FROM tasca WHERE Id = @TaskId";
 
-                // Create a SqlCommand with parameters
-                using (SqlCommand cmd = new SqlCommand(deleteQuery, LaMevaConnexioSQL))
-                {
-                    cmd.Parameters.AddWithValue("@TaskId", taskId);
+                MessageBoxResult result = MessageBox.Show("¿Segur qeu vols eliminar la tasca?", "Confirmación", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
-                    // Execute the DELETE query
-                    cmd.ExecuteNonQuery();
+                if (result == MessageBoxResult.Yes)
+                {
+                    // Create a SqlCommand with parameters
+                    using (SqlCommand cmd = new SqlCommand(deleteQuery, LaMevaConnexioSQL))
+                    {
+                        cmd.Parameters.AddWithValue("@TaskId", taskId);
+
+                        // Execute the DELETE query
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                else if (result == MessageBoxResult.No)
+                {
+                    
                 }
             }
             catch (Exception ex)
@@ -369,7 +378,8 @@ namespace ProjectoDragDrop
             }
             else if (idRol == 1) { }
         }
-        // Funcio per cridar a la funcio Permissos despres de que el main window h
+
+        // Funcio per cridar a la funcio Permissos despres de que el main window hagi estat inicialitzat
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // Llama a la función Permissos después de que la ventana se ha cargado completamente

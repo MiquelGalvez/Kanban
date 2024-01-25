@@ -121,19 +121,19 @@
             <ColumnDefinition Width="30" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="49*"/>
-            <RowDefinition Height="618*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="607*"/>
             <RowDefinition Height="67.04"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border CornerRadius="10" BorderThickness="2" BorderBrush="#114358" Grid.Column="6" Grid.Row="0" Margin="81,10,72,6">
-            <StackPanel Orientation="Horizontal" Margin="3,0,-1,0">
-                <Label Content="Usuari: " Margin="0,0,1,0" Width="46" Foreground="Black"/>
-                <Label x:Name="usuari" Width="88" Foreground="Black"/>
+        <Border HorizontalAlignment="Right" Grid.Column="6" Grid.Row="0" Margin="0,0,0,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0">
+                <Image Source="/ProjectoDragDrop;component/imagenes/perfil.png" Width="40" Height="40" />
+                <Label VerticalAlignment="Center" x:Name="usuari" Width="111" Foreground="Black" Height="32"/>
+                <Button Background="Transparent" BorderBrush="Transparent" Click="sortir_Click" x:Name="sortir" Height="28">
+                    <Image Source="/ProjectoDragDrop;component/imagenes/cerrar-sesion.png" Width="35" Height="23"/>
+                </Button>
             </StackPanel>
         </Border>
-        <Button Click="sortir_Click" x:Name="sortir" Grid.Column="6" Grid.Row="0" Margin="230,11,32,9" Background="Transparent" BorderBrush="Transparent">
-            <Image Source="/ProjectoDragDrop;component/imagenes/cerrar-sesion.png" Width="23" Height="23"/>
-        </Button>
         <!-- Primera columna -->
         <Border CornerRadius="10" Grid.Column="0" Grid.Row="1" BorderBrush="#f1ece7" BorderThickness="1" Margin="30,10,0,30">
             <!-- Contenido -->

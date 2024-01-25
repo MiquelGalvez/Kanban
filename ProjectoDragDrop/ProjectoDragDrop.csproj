@@ -285,5 +285,8 @@
   <ItemGroup>
     <Resource Include="imagenes\cerrar-sesion.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="imagenes\perfil.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
