@@ -39,7 +39,7 @@ namespace ProjectoDragDrop
             ActulitzarTasquesPerEstat();
         }
 
-        // Mostrar les asques per estat en la seva columna especifica
+        // Funcio que executa la comanda SQL per obtenir tota la imformació de cada tasca i posa la tasca a cada un dels listbox en dependencia al estat de la tasca
         private void MostrarTasquesPerEstat(string estado, ListBox listBox)
         {
             string consulta = "SELECT * FROM tasca t INNER JOIN Prioritat p ON t.id_prioritat = p.Id INNER JOIN Estat e ON t.id_estat = e.Id" + " WHERE e.estat = @Estado";

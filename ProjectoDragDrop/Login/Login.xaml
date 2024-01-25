@@ -14,11 +14,11 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Login to Kanban" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Foreground="Black" Margin="0,20,0,10"/>
+        <TextBlock Text="Login to Kanban" FontWeight="ExtraBold" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="24" Foreground="Black" Margin="0,20,0,10"/>
 
         <StackPanel Grid.Row="1" Margin="30">
-            <TextBox x:Name="UsernameTextBox" GotFocus="TextBox_GotFocus" Text="Nom d'Usuari" Height="40" HorizontalAlignment="Stretch" Margin="0,0,0,15" Background="#114358" Foreground="White"/>
-            <PasswordBox x:Name="PasswordBox" GotFocus="TextBox_GotFocus" Password="Contrasenya" Height="40" HorizontalAlignment="Stretch" Margin="0,0,0,15" Background="#114358" Foreground="White"/>
+            <TextBox VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="Black" x:Name="UsernameTextBox" GotFocus="TextBox_GotFocus" Text="Nom d'Usuari" Height="40" HorizontalAlignment="Stretch" Margin="0,0,0,15" Background="White" Foreground="Black"/>
+            <PasswordBox VerticalContentAlignment="Center" BorderThickness="1" x:Name="PasswordBox" BorderBrush="Black" GotFocus="TextBox_GotFocus" Password="Contrasenya" Height="40" HorizontalAlignment="Stretch" Margin="0,0,0,15" Background="White" Foreground="Black"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">

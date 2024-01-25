@@ -47,7 +47,7 @@ namespace ProjectoDragDrop.FormulariEditarTasca
             }
         }
 
-        // Funció que sereveix per poder emplenar als TextBox i Date Picker la infromació de la tasca
+        // Funció que sereveix per poder emplenar als TextBox i Date Picker amb la infromació de la tasca
         private void EmplenarInfo(DataRowView task)
         {
             Titol.Text = task["titol"].ToString();
@@ -145,7 +145,7 @@ namespace ProjectoDragDrop.FormulariEditarTasca
         {
             try
             {
-                // Obtén los valores de los controles
+                // Obtenir els valors dels Textbox on s'escriu l'infromació nova
                 string titol = Titol.Text;
                 DateTime datafinalitzacio = dp1.SelectedDate ?? DateTime.Now;
                 string descripcio = DescripcioTasca.Text;
@@ -167,7 +167,7 @@ namespace ProjectoDragDrop.FormulariEditarTasca
             }
         }
 
-        // Funció qeu cuan es crida el que fa es executar la comanda per modificar l'infromació de la Tasca
+        // Funció qeu cuan es crida el que fa es executar la comanda per modificar l'infromació de la Tasca, amb els valors qeu li pasem al constructor
         private void ActualitzarTasca(int taskId, string titol, DateTime datafinalitzacio, string descripcio, int idPrioritat, int idResponsable)
         {
             string updateQuery = "UPDATE tasca SET titol = @Titol, datafinalitzacio = @DataFinalitzacio, descricpio = @Descripcio, id_prioritat = @IdPrioritat, id_responsable = @IdResponsable WHERE Id = @TaskId";
