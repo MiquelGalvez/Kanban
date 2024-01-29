@@ -33,7 +33,7 @@
         <Border Margin="20,14,14,11" Grid.Column="1" Grid.Row="2" Background="#f1ece7" CornerRadius="10">
             <TextBox GotFocus="TextBox_GotFocus" Name="Email" Background="Transparent" Text="Email" FontSize="20" VerticalAlignment="Center" TextAlignment="Center" BorderThickness="0" Margin="0,0,0,0"/>
         </Border>
-        <Border Margin="17,14,21,84" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Background="#f1ece7" CornerRadius="10" Grid.RowSpan="2">
+        <Border x:Name="Roles" Margin="17,14,21,84" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Background="#f1ece7" CornerRadius="10" Grid.RowSpan="2">
             <StackPanel>
                 <Label Content="Rol" FontSize="16" FontWeight="Bold"></Label>
                 <ComboBox FontSize="20" x:Name="rols"/>

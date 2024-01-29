@@ -181,6 +181,11 @@
     <Compile Include="MesInfoTasca\VeureTasca.xaml.cs">
       <DependentUpon>VeureTasca.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Objectes\Tasca.cs" />
+    <Compile Include="Objectes\Usuaris.cs" />
+    <Compile Include="Responsables\Responsables.xaml.cs">
+      <DependentUpon>Responsables.xaml</DependentUpon>
+    </Compile>
     <Page Include="EliminarUsuari\EliminarUsuari.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +218,10 @@
       <DependentUpon>CrearTasca.xaml</DependentUpon>
     </Compile>
     <Page Include="MesInfoTasca\VeureTasca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Responsables\Responsables.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

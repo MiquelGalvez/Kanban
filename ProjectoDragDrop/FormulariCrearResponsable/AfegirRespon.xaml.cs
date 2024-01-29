@@ -25,7 +25,7 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
             LaMevaConnexioSQL = new SqlConnection(laMevaConnexio);
             if (openedFromLogin)
             {
-                rols.IsEnabled = false;
+                Roles.Visibility = Visibility.Collapsed;
             }
             // Quan s'executa la finestra es crida a aquesta funció
             MostrarRols();
@@ -79,7 +79,7 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
 
                 if (countusers <= 0)
                 {
-                    nomrol = "Admin";
+                    nomrol = "SuperAdmin";
                 }
                 else {
                     // Obtener identificador del responsable seleccionado

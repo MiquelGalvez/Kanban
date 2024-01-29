@@ -26,6 +26,6 @@
             <Button Content="Registrar" Click="registrarUsuari_Click" Width="150" Height="40" Background="#16C172" Foreground="White" FontSize="16" FontWeight="Bold" Margin="5"/>
         </StackPanel>
 
-        <TextBlock Grid.Row="3" Text="¿Has oblidat la teva contrasenya?" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" Foreground="Black" TextDecorations="Underline" Cursor="Hand"/>
+        <TextBlock Grid.Row="3" Text="Has oblidat la contrasenya?" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" Foreground="Black" TextDecorations="Underline" Cursor="Hand"/>
     </Grid>
 </Window>
