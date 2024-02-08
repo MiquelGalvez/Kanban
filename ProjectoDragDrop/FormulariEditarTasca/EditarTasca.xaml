@@ -26,7 +26,7 @@
         <Border Margin="18,8,21,3" Grid.Column="1" Grid.Row="1" Background="#f1ece7" CornerRadius="10">
             <StackPanel>
                 <Label Content="Prioritat" FontSize="16" FontWeight="Bold"></Label>
-                <ComboBox FontSize="20" x:Name="prioritats"/>
+                <ComboBox FontSize="20" x:Name="prioridades"/>
             </StackPanel>
         </Border>
         <Border Margin="18,10,14,11" Grid.Column="0" Grid.Row="2" Background="#f1ece7" CornerRadius="10">

@@ -158,14 +158,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="EliminarUsuari\EliminarUsuari.xaml.cs">
-      <DependentUpon>EliminarUsuari.xaml</DependentUpon>
+    <Compile Include="EditarResponsables\EditarRespon.xaml.cs">
+      <DependentUpon>EditarRespon.xaml</DependentUpon>
     </Compile>
     <Compile Include="FormulariCrearResponsable\AfegirRespon.xaml.cs">
       <DependentUpon>AfegirRespon.xaml</DependentUpon>
     </Compile>
     <Compile Include="FormulariEditarTasca\EditarTasca.xaml.cs">
       <DependentUpon>EditarTasca.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GestioResponsables\Responsables.xaml.cs">
+      <DependentUpon>Responsables.xaml</DependentUpon>
     </Compile>
     <Compile Include="kanbanDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -181,24 +184,29 @@
     <Compile Include="MesInfoTasca\VeureTasca.xaml.cs">
       <DependentUpon>VeureTasca.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Objectes\DadesBBDD.cs" />
+    <Compile Include="Objectes\Estats.cs" />
+    <Compile Include="Objectes\Prioritats.cs" />
+    <Compile Include="Objectes\Rols.cs" />
     <Compile Include="Objectes\Tasca.cs" />
     <Compile Include="Objectes\Usuaris.cs" />
-    <Compile Include="Responsables\Responsables.xaml.cs">
-      <DependentUpon>Responsables.xaml</DependentUpon>
-    </Compile>
-    <Page Include="EliminarUsuari\EliminarUsuari.xaml">
+    <Page Include="EditarResponsables\EditarRespon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FormulariCrearResponsable\AfegirRespon.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="FormulariEditarTasca\EditarTasca.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="FormulariCrearTasca\CrearTasca.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GestioResponsables\Responsables.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -218,10 +226,6 @@
       <DependentUpon>CrearTasca.xaml</DependentUpon>
     </Compile>
     <Page Include="MesInfoTasca\VeureTasca.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Responsables\Responsables.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

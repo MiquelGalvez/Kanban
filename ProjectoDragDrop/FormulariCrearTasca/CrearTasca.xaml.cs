@@ -22,23 +22,24 @@ namespace ProjectoDragDrop.FormulariCrearTasca
     {
         SqlConnection LaMevaConnexioSQL;
         private MainWindow mainWindow;
-        public CrearTasca(MainWindow mainWindow)
+        private string usuarilogin;
+        public CrearTasca(MainWindow mainWindow, string usuarilogin)
         {
             InitializeComponent();
             this.mainWindow = mainWindow;
             string laMevaConnexio = ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString;
             LaMevaConnexioSQL = new SqlConnection(laMevaConnexio);
-
+            this.usuarilogin = usuarilogin;
             MostrarRespnsables();
             MostrarPrioritats();
-            // Agregar el evento Click al botón CrearButton
+            // Agregar el event Click al boto CrearButton
             CrearButton.Click += CrearButton_Click;
         }
 
-        // Funcio per poder afegir els noms dels responsables des de la base de dades al combobox de responsables
+        // Funcio per poder afegir els usuaris dels responsables des de la base de dades al combobox de responsables
         private void MostrarRespnsables()
         {
-            string consulta = "SELECT nom FROM Usuaris";
+            string consulta = "SELECT usuari FROM Usuaris";
 
             SqlDataAdapter elMeuAdaptador = new SqlDataAdapter(consulta, LaMevaConnexioSQL);
             using (elMeuAdaptador)
@@ -50,7 +51,7 @@ namespace ProjectoDragDrop.FormulariCrearTasca
                 //POR CADA USER AÑADIR AL COMBOBOX
                 foreach (DataRow row in dt.Rows)
                 {
-                    responsables.Items.Add(row["nom"].ToString());
+                    responsables.Items.Add(row["usuari"].ToString());
                 }
             }
         }
@@ -84,7 +85,6 @@ namespace ProjectoDragDrop.FormulariCrearTasca
             }
         }
 
-
         // Aquesta funcio crea la tasca a la base de dades
         private void CrearButton_Click(object sender, RoutedEventArgs e)
         {
@@ -93,15 +93,15 @@ namespace ProjectoDragDrop.FormulariCrearTasca
                 // Obtindre els valors dels controladors
                 string titol = Titol.Text;
                 DateTime datacreacio = DateTime.Now;  // Obtenim la data del dia d'avui
-                DateTime datafinalitzacio = dp1.SelectedDate ?? DateTime.Now; //  Obtenim la data seleccionada y si no seleccionem res obtenim la data del dia d'avui
+                DateTime datafinalitzacio = dp1.SelectedDate ?? DateTime.Now.AddDays(7); //  Obtenim la data seleccionada y si no seleccionem res obtenim la data del dia d'avui
                 string descripcio = DescripcioTasca.Text;
 
-                // Obtenir l'id del responsable selecionat
-                string responsableNombre = responsables.SelectedItem?.ToString();
+                // Obtenir l'id del responsable selecionat i si no seleccionem cap ens posa per defecte el usuari amb el que hem fet login
+                string responsableNombre = responsables.SelectedItem?.ToString() ?? usuarilogin;
                 int idResponsable = ObtenerIdResponsable(responsableNombre);
 
                 // Obtenir l'id de la prioritat selecionat
-                string prioritatNombre = prioritats.SelectedItem?.ToString();
+                string prioritatNombre = prioritats.SelectedItem?.ToString() ?? "Baixa";
                 int idPrioritat = ObtenerIdPrioritat(prioritatNombre);
 
                 // Obtenir l'id del estat per defecte, no el podem seleccionar sempre ens posara sempre l'estat com a TO DO
@@ -131,6 +131,7 @@ namespace ProjectoDragDrop.FormulariCrearTasca
 
                 mainWindow.ActulitzarTasquesPerEstat();
                 MessageBox.Show("Tasca creada exitosamente.");
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -138,17 +139,16 @@ namespace ProjectoDragDrop.FormulariCrearTasca
             }
         }
 
-
         // Funció utilitzada per obtenir l'id del responsable
-        private int ObtenerIdResponsable(string responsableNombre)
+        private int ObtenerIdResponsable(string responsableusuri)
         {
-            string consulta = "SELECT Id FROM Usuaris WHERE nom = @Nom";
+            string consulta = "SELECT Id FROM Usuaris WHERE usuari = @User";
 
             using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(consulta, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Nom", responsableNombre);
+                    cmd.Parameters.AddWithValue("@User", responsableusuri);
                     conn.Open();
                     return (int)cmd.ExecuteScalar();
                 }

@@ -1,46 +1,33 @@
 ﻿<Window x:Class="ProjectoDragDrop.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ProjectoDragDrop"
-        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        mc:Ignorable="d"
-        Title="KANBAN" Height="750" Width="1300" VerticalContentAlignment="Stretch" Background="White" MinWidth="1080" MinHeight="700" WindowStartupLocation="CenterScreen">
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+            xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:local="clr-namespace:ProjectoDragDrop"
+            xmlns:obj="clr-namespace:ProjectoDragDrop.Objectes"
+            xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+            mc:Ignorable="d"
+            Title="KANBAN" ResizeMode="NoResize" Height="750" Width="1300" VerticalContentAlignment="Stretch" Background="White" MinWidth="1080" MinHeight="700" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <DataTemplate x:Name="TemplateBlack" x:Key="TemplateBlack">
             <Border CornerRadius="10" BorderBrush="Black">
                 <StackPanel Margin="7">
                     <TextBlock  FontSize="16" FontWeight="Bold">
-                        <Run Text="ID:"></Run>
-                        <Run Text="{Binding Path=Id}"></Run>
+                            <Run Text="ID:"></Run>
+                            <Run Text="{Binding Id}"></Run>
                     </TextBlock>
                     <Separator Background="Black" Height="5px"></Separator>
-                    <TextBlock Text="{Binding Path=titol}" FontWeight="Bold" Height="30" FontSize="24" Margin="0,0,0,5"></TextBlock>
+                    <TextBlock Text="{Binding Titol}" FontWeight="Bold" Height="30" FontSize="24" Margin="0,0,0,5"></TextBlock>
                     <Separator Background="Black" Height="5px"></Separator>
                     <TextBlock Text="Prioritat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                    <TextBlock Text="{Binding Path=prioritat}" FontWeight="Bold" Height="30" FontSize="19" Margin="0,0,0,10">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=id_prioritat}" Value="1">
-                                        <Setter Property="Background" Value="Red"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=id_prioritat}" Value="3">
-                                        <Setter Property="Background" Value="Yellow"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=id_prioritat}" Value="2">
-                                        <Setter Property="Background" Value="White"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                    <Border Height="35" Margin="0,0,0,0" BorderThickness="2px" Background="{Binding Path=PrioritatBackground}">
+                        <TextBlock Foreground="Black" Text="{Binding Id_Prioritat}" FontWeight="Bold" Height="35" FontSize="19" Margin="0,0,0,10" Background="Transparent"/>
+                    </Border>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="242">
-                        <Button Click="MoureEsquerra_Click" Margin="10,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
+                        <Button Name="MoureEsquerra" Click="MoureTasca_Click" Margin="10,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda.png" Width="23" Height="22" />
                         </Button>
-                        <Button Click="MoureDreta_Click" Margin="0,0,75,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
+                        <Button Name="MoureDreta" Click="MoureTasca_Click" Margin="0,0,75,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-correcta.png" Width="23" Height="22" />
                         </Button>
                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click">
@@ -57,49 +44,35 @@
                 </StackPanel>
             </Border>
         </DataTemplate>
-        <DataTemplate x:Key="TemplateWhite">
+        <DataTemplate x:Name="TemplateWhite" x:Key="TemplateWhite">
             <Border CornerRadius="10" BorderBrush="Black">
                 <StackPanel Margin="7">
                     <TextBlock  FontSize="16" FontWeight="Bold">
-                        <Run Text="ID:"></Run>
-                        <Run Text="{Binding Path=Id}"></Run>
+                            <Run Text="ID:"></Run>
+                            <Run Text="{Binding Id}"></Run>
                     </TextBlock>
                     <Separator Background="White" Height="5px"></Separator>
-                    <TextBlock Text="{Binding Path=titol}" FontWeight="Bold" Height="30" FontSize="24" Margin="0,0,0,5"></TextBlock>
+                    <TextBlock Text="{Binding Titol}" FontWeight="Bold" Height="30" FontSize="24" Margin="0,0,0,5"></TextBlock>
                     <Separator Background="White" Height="5px"></Separator>
                     <TextBlock Text="Prioritat" HorizontalAlignment="Left" FontWeight="Bold" FontStyle="Italic" Width="175"/>
-                    <TextBlock Text="{Binding Path=prioritat}" Foreground="Black" FontWeight="Bold" Height="30" FontSize="19" Margin="0,0,0,10">
-                        <TextBlock.Style>
-                            <Style TargetType="{x:Type TextBlock}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=id_prioritat}" Value="1">
-                                        <Setter Property="Background" Value="Red"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=id_prioritat}" Value="3">
-                                        <Setter Property="Background" Value="Yellow"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding Path=id_prioritat}" Value="2">
-                                        <Setter Property="Background" Value="White"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                    <Border Height="35" Margin="0,0,0,0" BorderThickness="2px" Background="{Binding Path=PrioritatBackground}">
+                        <TextBlock Foreground="Black" Text="{Binding Id_Prioritat}" FontWeight="Bold" Height="30" FontSize="19" Margin="0,0,0,10" Background="Transparent"/>
+                    </Border>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Width="250">
-                        <Button Click="MoureEsquerra_Click" Margin="10,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
+                        <Button  Name="MoureEsquerra" Click="MoureTasca_Click" Margin="10,0,10,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-izqueirda-white.png" Width="23" Height="22" />
                         </Button>
-                        <Button Click="MoureDreta_Click" x:Name="MoureDreta" Margin="0,0,75,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
+                        <Button  Name="MoureDreta" Click="MoureTasca_Click" Margin="0,0,75,0" HorizontalAlignment="Right" BorderBrush="Transparent" Foreground="White" Background="Transparent">
                             <Image Source="/ProjectoDragDrop;component/imagenes/flecha-correcta-white.png" Width="23" Height="22" />
                         </Button>
                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="EditarTasca_Click">
-                            <Image Source="/ProjectoDragDrop;component/imagenes/lapizwhite.png" Width="23" Height="22" />
+                            <Image Source="/ProjectoDragDrop;component/imagenes/lapizwhite.png" Width="23" Height="22"/>
                         </Button>
                         <Button BorderBrush="Transparent" Foreground="White" Background="Transparent" x:Name="eliminarTascaWhite" Click="EliminarTasca_Click">
-                            <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22" />
+                            <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="22"/>
                         </Button>
                         <Button Margin="0,0,10,0" BorderBrush="Transparent" Foreground="White" Background="Transparent" Click="VeureInformacióTasca_Click">
-                            <Image Source="/ProjectoDragDrop;component/imagenes/espectaculowhite.png" Width="23" Height="22" />
+                            <Image Source="/ProjectoDragDrop;component/imagenes/espectaculowhite.png" Width="23" Height="22"/>
                         </Button>
                     </StackPanel>
                 </StackPanel>
@@ -152,17 +125,17 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
                                         <Border
-                                        x:Name="Bd"
-                                        SnapsToDevicePixels="true"
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        Padding="{TemplateBinding Padding}">
+                                            x:Name="Bd"
+                                            SnapsToDevicePixels="true"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Padding="{TemplateBinding Padding}">
                                             <ContentPresenter
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            RecognizesAccessKey="True"/>
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                RecognizesAccessKey="True"/>
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsSelected" Value="true">
@@ -197,17 +170,17 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
                                         <Border
-                                        x:Name="Bd"
-                                        SnapsToDevicePixels="true"
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        Padding="{TemplateBinding Padding}">
+                                            x:Name="Bd"
+                                            SnapsToDevicePixels="true"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Padding="{TemplateBinding Padding}">
                                             <ContentPresenter
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            RecognizesAccessKey="True"/>
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                RecognizesAccessKey="True"/>
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsSelected" Value="true">
@@ -242,17 +215,17 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
                                         <Border
-                                        x:Name="Bd"
-                                        SnapsToDevicePixels="true"
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        Padding="{TemplateBinding Padding}">
+                                            x:Name="Bd"
+                                            SnapsToDevicePixels="true"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Padding="{TemplateBinding Padding}">
                                             <ContentPresenter
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            RecognizesAccessKey="True"/>
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                RecognizesAccessKey="True"/>
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsSelected" Value="true">
@@ -287,17 +260,17 @@
                                 <Setter.Value>
                                     <ControlTemplate TargetType="ListBoxItem">
                                         <Border
-                                        x:Name="Bd"
-                                        SnapsToDevicePixels="true"
-                                        Background="{TemplateBinding Background}"
-                                        BorderBrush="{TemplateBinding BorderBrush}"
-                                        BorderThickness="{TemplateBinding BorderThickness}"
-                                        Padding="{TemplateBinding Padding}">
+                                            x:Name="Bd"
+                                            SnapsToDevicePixels="true"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            Padding="{TemplateBinding Padding}">
                                             <ContentPresenter
-                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            RecognizesAccessKey="True"/>
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                RecognizesAccessKey="True"/>
                                         </Border>
                                         <ControlTemplate.Triggers>
                                             <Trigger Property="IsSelected" Value="true">
@@ -313,43 +286,8 @@
                 </ListBox>
             </StackPanel>
         </Border>
-        <Border CornerRadius="10" Grid.Column="6" Grid.Row="2" Margin="0,12,0,0">
-            <StackPanel Margin="-16,-34,0,1">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                </Grid>
-                <StackPanel Margin="30">
-                    <Border Height="43" CornerRadius="10" Width="226" Background="#114358">
-                        <StackPanel Orientation="Horizontal">
-                            <Label Margin="5,0,0,0" Foreground="White" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Responsables" FontSize="16" FontWeight="Bold" Height="34" Width="125"/>
-                            <!-- Contenido -->
-                            <Border  CornerRadius="10" Height="26">
-                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="AfegirResponsable_Click" x:Name="afegirResponsable" Height="27">
-                                    <Image Source="/ProjectoDragDrop;component/imagenes/anadir.png" Width="23" Height="23"/>
-                                </Button>
-                            </Border>
-                            <Border  CornerRadius="10" Height="26">
-                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" Background="Transparent" Click="EliminarUsuari_Click" x:Name="eliminarResponsable" Height="26">
-                                    <Image Source="/ProjectoDragDrop;component/imagenes/eliminarwhite.png" Width="23" Height="23"/>
-                                </Button>
-                            </Border>
-                            <!-- Contenido -->
-                            <Border CornerRadius="10" Height="26">
-                                <Button FontWeight="Bold" Foreground="White" BorderBrush="Transparent" x:Name="editarResponsable" Background="Transparent">
-                                    <Image Source="/ProjectoDragDrop;component/imagenes/lapizwhite.png" Width="23" Height="23"/>
-                                </Button>
-                            </Border>
-                        </StackPanel>
-                    </Border>
-                </StackPanel>
-            </StackPanel>
+        <Border Margin="47,11,43,14" CornerRadius="10" Grid.Column="6" Grid.Row="2" Background="#114358">
+            <Button Name="ResponsableButton" Content="RESPONSABLES" FontWeight="Bold" BorderBrush="Transparent" Foreground="White" Padding="4" Background="Transparent" Click="Responsables_Click"></Button>
         </Border>
 
         <!--Boto Crear Tasca-->

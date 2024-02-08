@@ -1,4 +1,5 @@
 ﻿using ProjectoDragDrop;
+using ProjectoDragDrop.Objectes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,82 +23,36 @@ namespace ProjectoDragDrop.FormulariEditarTasca
     public partial class EditarTasca : Window
     {
         SqlConnection LaMevaConnexioSQL;
-        private string TascaId;
+        private int TascaId;
         private string ResponsableNom;
         private string PrioritatNom;
+        private DadesBBDD dadesBBDD;
         public string laMevaConexioString = ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString;
-        public EditarTasca(DataRowView task)
+        public EditarTasca(Tasca tasca)
         {
+            dadesBBDD = new DadesBBDD();
             InitializeComponent();
-            TascaId = task["Id"].ToString(); // Serveix per declarar quina es la Id de la tasca seleci
+            TascaId = tasca.Id;
             LaMevaConnexioSQL = new SqlConnection(laMevaConexioString);
 
-            int idResponsable = Convert.ToInt32(task["id_responsable"]);
-            ResponsableNom = GetResponsableNameById(idResponsable);
-            int idPrioritat = Convert.ToInt32(task["id_prioritat"]);
-            PrioritatNom = GetPrioritatNameById(idPrioritat);
+            ResponsableNom = tasca.Id_responsable;
+            PrioritatNom = tasca.Id_Prioritat;
 
-            // Crida les funcions per emplenar els combobox
-            MostrarRespnsables();
-            MostrarPrioritats();
+            MostrarRespnsables(dadesBBDD.ObtenerUsuarios());
+            MostrarPrioritats(dadesBBDD.ObtenirPrioritats());
 
-            // Comproba si la informació de la tasac s'ha pasat correctament si es aixi fa tot l'ho altre
-            if (task != null)
-            {
-                EmplenarInfo(task);
-            }
+            EmplenarInfo(tasca);
         }
 
         // Funció que sereveix per poder emplenar als TextBox i Date Picker amb la infromació de la tasca
-        private void EmplenarInfo(DataRowView task)
+        private void EmplenarInfo(Tasca tarea)
         {
-            Titol.Text = task["titol"].ToString();
-            dp1.SelectedDate = Convert.ToDateTime(task["datafinalitzacio"]);
-            DescripcioTasca.Text = task["descricpio"].ToString();
+            Titol.Text = tarea.Titol;
+            dp1.SelectedDate = tarea.Datafinalitzacio;
+            DescripcioTasca.Text = tarea.Descripcio;
 
-            // Establir el valor per defecte dels combobox en dependencia a la informació que ja tenim a la tasca
             responsables.SelectedItem = ResponsableNom;
-            prioritats.SelectedItem = PrioritatNom;
-        }
-
-        // Funcio per poder afegir els noms dels responsables des de la base de dades al combobox de responsables
-        private void MostrarRespnsables()
-        {
-            string consulta = "SELECT nom FROM Usuaris";
-
-            SqlDataAdapter elMeuAdaptador = new SqlDataAdapter(consulta, LaMevaConnexioSQL);
-            using (elMeuAdaptador)
-            {
-
-                DataTable dt = new DataTable();
-                elMeuAdaptador.Fill(dt);
-
-                //POR CADA USER AÑADIR AL COMBOBOX
-                foreach (DataRow row in dt.Rows)
-                {
-                    responsables.Items.Add(row["nom"].ToString());
-                }
-            }
-        }
-
-        // Funcio per poder afegir els noms de les prioritats des de la base de dades al combobox de prioritats
-        private void MostrarPrioritats()
-        {
-            string consulta = "SELECT prioritat FROM Prioritat";
-
-            SqlDataAdapter elMeuAdaptador = new SqlDataAdapter(consulta, LaMevaConnexioSQL);
-            using (elMeuAdaptador)
-            {
-
-                DataTable dt = new DataTable();
-                elMeuAdaptador.Fill(dt);
-
-                //POR CADA USER AÑADIR AL COMBOBOX
-                foreach (DataRow row in dt.Rows)
-                {
-                    prioritats.Items.Add(row["prioritat"].ToString());
-                }
-            }
+            prioridades.SelectedItem = PrioritatNom;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -111,33 +67,29 @@ namespace ProjectoDragDrop.FormulariEditarTasca
         // Funció utilitzada per obtenir l'id del responsable
         private int ObtenirIdResponsable(string responsableNombre)
         {
-            string consulta = "SELECT Id FROM Usuaris WHERE nom = @Nom";
+            Usuaris usuari = dadesBBDD.usuaris.Find(u => u.Usuari == responsableNombre);
 
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString))
+            // I finalment si es troba el rol a la llista retornem el seu Id
+            if (usuari != null)
             {
-                using (SqlCommand cmd = new SqlCommand(consulta, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Nom", responsableNombre);
-                    conn.Open();
-                    return (int)cmd.ExecuteScalar();
-                }
+                return usuari.Id;
             }
+
+            return -1;
         }
 
         // Funció utilitzada per obtenir l'id de la prioritat
         private int ObtenirIdPrioritat(string prioritatNombre)
         {
-            string consulta = "SELECT Id FROM Prioritat WHERE prioritat = @Prioritat";
+            Prioritats prioritat = dadesBBDD.prioritats.Find(p => p.Prioritat == prioritatNombre);
 
-            using (SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["ProjectoDragDrop.Properties.Settings.kanbanConnectionString"].ConnectionString))
+            // I finalment si es troba el rol a la llista retornem el seu Id
+            if (prioritat != null)
             {
-                using (SqlCommand cmd = new SqlCommand(consulta, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Prioritat", prioritatNombre);
-                    conn.Open();
-                    return (int)cmd.ExecuteScalar();
-                }
+                return prioritat.Id;
             }
+
+            return -1;
         }
 
         // Funcio qeu executa el boto i qeu serevix per guarda la informació a les variables per despres poder executar la comanda sql
@@ -147,16 +99,16 @@ namespace ProjectoDragDrop.FormulariEditarTasca
             {
                 // Obtenir els valors dels Textbox on s'escriu l'infromació nova
                 string titol = Titol.Text;
-                DateTime datafinalitzacio = dp1.SelectedDate ?? DateTime.Now;
+                DateTime datafinalitzacio = dp1.SelectedDate ?? DateTime.Now.AddDays(7);
                 string descripcio = DescripcioTasca.Text;
 
-                string prioritatNombre = prioritats.SelectedItem?.ToString();
+                string prioritatNombre = prioridades.SelectedItem?.ToString();
                 int idPrioritat = ObtenirIdPrioritat(prioritatNombre);
 
                 string responsableNombre = responsables.SelectedItem?.ToString();
                 int idResponsable = ObtenirIdResponsable(responsableNombre);
 
-                ActualitzarTasca(int.Parse(TascaId), titol, datafinalitzacio, descripcio, idPrioritat, idResponsable);
+                ActualitzarTasca(TascaId, titol, datafinalitzacio, descripcio, idPrioritat, idResponsable);
 
                 MessageBox.Show("Cambis guardats correctament");
                 this.Close();
@@ -190,39 +142,21 @@ namespace ProjectoDragDrop.FormulariEditarTasca
             }
         }
 
-        // Aquesta funció retorna el string del nom de la prioritat quan li passem el Id
-        private string GetPrioritatNameById(int idPrioritat)
+        // Funcion para mostrar los responsables en el combobox
+        private void MostrarRespnsables(List<Usuaris> usuaris)
         {
-            using (SqlConnection connection = new SqlConnection(laMevaConexioString))
+            foreach (Usuaris usuari in usuaris)
             {
-                connection.Open();
-
-                string query = "SELECT prioritat FROM Prioritat WHERE Id = @IdPrioritat";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@IdPrioritat", idPrioritat);
-
-                    return command.ExecuteScalar()?.ToString();
-                }
+                responsables.Items.Add(usuari.Usuari);
             }
         }
 
-        // Aquesta funció retorna el string del nom del responsable quan li passem el Id
-        private string GetResponsableNameById(int idResponsable)
+        // Funcion para mostrar las prioridades en el combobox
+        private void MostrarPrioritats(List<Prioritats> prioritats)
         {
-            using (SqlConnection connection = new SqlConnection(laMevaConexioString))
+            foreach (Prioritats prioritat in prioritats)
             {
-                connection.Open();
-
-                string query = "SELECT nom FROM Usuaris WHERE Id = @IdResponsable";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@IdResponsable", idResponsable);
-
-                    return command.ExecuteScalar()?.ToString();
-                }
+                prioridades.Items.Add(prioritat.Prioritat);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using ProjectoDragDrop.FormulariCrearResponsable;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -14,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ProjectoDragDrop.FormulariCrearResponsable;
 
 namespace ProjectoDragDrop.Login
 {

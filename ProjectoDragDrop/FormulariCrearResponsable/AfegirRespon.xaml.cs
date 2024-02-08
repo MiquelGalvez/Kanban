@@ -112,6 +112,7 @@ namespace ProjectoDragDrop.FormulariCrearResponsable
                 }
 
                 MessageBox.Show("Usuari creat exitosament.");
+                this.Close();
             }
             catch (Exception ex)
             {
